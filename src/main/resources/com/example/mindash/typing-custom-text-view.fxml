@@ -11,7 +11,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
     <Label text="Enter Your Custom Text:" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #a1a1a1;" />
-    <TextArea fx:id="customTextInputArea" promptText="Type or paste your custom text here (minimum 20 characters for meaningful test)..." wrapText="true" prefHeight="150.0" prefWidth="350.0" style="-fx-font-size: 14px; -fx-padding: 8px; -fx-border-color: #cccccc; -fx-border-radius: 5px;" />
+    <TextArea fx:id="customTextInputArea" promptText="Type or paste your custom text here (minimum 20 characters for meaningful test)..." wrapText="true" prefHeight="150.0" prefWidth="350.0" style="-fx-font-size: 14px; -fx-padding: 8px; -fx-border-color: #cccccc; -fx-border-radius: 5px;" styleClass="custom-text-input-area" />
     <Button fx:id="applyButton" text="Apply Text" onAction="#applyText" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 15px; -fx-border-radius: 5px;" />
     <Label fx:id="errorMessageLabel" text="" style="-fx-text-fill: red; -fx-font-size: 12px; -fx-max-width: 350px; -fx-wrap-text: true;" />
 </VBox>

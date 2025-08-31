@@ -1,10 +1,8 @@
-/* styles.css */
-
 /* Base styling for the entire application */
 .root {
     -fx-font-size: 16px;
     -fx-font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    -fx-background-color: #121212; /* Very dark charcoal background */
+    -fx-background-color: #1b1b1c; /* Very dark charcoal background */
 }
 
 /* --- Main Typing Checker Window (typing-checker.fxml) Styles --- */
@@ -288,15 +286,16 @@
 }
 
 .custom-text-input-area {
-    -fx-font-size: 16px;
-    -fx-prompt-text-fill: #a1a1a1; /* Darker prompt text for contrast */
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #a1a1a1; /* Lighter prompt text */
     -fx-background-color: #282828; /* Made dark gray for contrast */
-    -fx-border-color: #4a4a4a; /* Lighter border to match background */
+    -fx-border-color: #1a1a1a; /* Lighter border for visibility */
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-padding: 15px;
-    -fx-text-fill: #f5f5f5; /* Made white for contrast with dark background */
-    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-text-fill: #f5f5f5;
+    -fx-pref-height: 180.0;
+    -fx-control-inner-background: #1a1a1a;
 }
 
 .custom-text-input-area:focused {
