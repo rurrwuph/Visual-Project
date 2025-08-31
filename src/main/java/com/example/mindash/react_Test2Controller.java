@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Test2Controller implements Initializable {
+public class react_Test2Controller implements Initializable {
     @FXML
     private Pane gamePane;
     @FXML private Label statusLabel;
@@ -158,9 +158,9 @@ public class Test2Controller implements Initializable {
 
         try {
             // Load the result screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("result2.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("react_result2.fxml"));
             Parent root = loader.load();
-            Result2Controller controller = loader.getController();
+            react_Result2Controller controller = loader.getController();
             controller.setResults(reactionTime, bestTime);
 
             // Switch to the result screen
@@ -174,7 +174,7 @@ public class Test2Controller implements Initializable {
     private void loadBestTime() {
         try {
             if (Files.exists(Paths.get("bestTime2.txt"))) {
-                String content = new String(Files.readAllBytes(Paths.get("bestTime2.txt")));
+                String content = new String(Files.readAllBytes(Paths.get("react_bestTime2.txt")));
                 bestTime = Long.parseLong(content.trim());
                 bestTimeLabel.setText("Best time: " + bestTime + " ms");
             }
@@ -186,7 +186,7 @@ public class Test2Controller implements Initializable {
 
     private void saveBestTime(long time) {
         try {
-            Files.write(Paths.get("bestTime2.txt"), String.valueOf(time).getBytes());
+            Files.write(Paths.get("react_bestTime2.txt"), String.valueOf(time).getBytes());
             bestTime = time;
             bestTimeLabel.setText("Best time: " + bestTime + " ms");
         } catch (IOException e) {

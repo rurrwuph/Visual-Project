@@ -13,7 +13,7 @@
             <children>
                 <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" prefHeight="70.0" prefWidth="210.0" text="Typing" />
                 <Button fx:id="memoryButton" layoutY="152.0" mnemonicParsing="false" onAction="#launchMemory" prefHeight="70.0" prefWidth="210.0" text="Memory" />
-                <Button fx:id="reactionButton" layoutY="76.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="210.0" text="Reaction" />
+                <Button fx:id="reactionButton" layoutY="76.0" mnemonicParsing="false" onAction="#launchReaction" prefHeight="70.0" prefWidth="210.0" text="Reaction" />
       
               <!-- Right section containing name label, image, and description label -->
               <AnchorPane layoutX="212.0" prefHeight="416.0" prefWidth="531.0" style="-fx-background-color: #4F4A49;">

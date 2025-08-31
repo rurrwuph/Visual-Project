@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class Result2Controller {
+public class react_Result2Controller {
     @FXML
     private Label currentTimeLabel;
     @FXML private Label bestTimeLabel;
@@ -37,7 +37,7 @@ public class Result2Controller {
     @FXML
     private void playAgain() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("test2.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("react_test2.fxml"));
             Stage stage = (Stage) currentTimeLabel.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {

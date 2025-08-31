@@ -30,7 +30,7 @@ import java.util.Random;
 
 
 
-public class Test1Controller  implements Initializable {
+public class react_Test1Controller  implements Initializable {
     @FXML
     private GridPane gridPane;
     @FXML private Label statusLabel;
@@ -46,7 +46,7 @@ public class Test1Controller  implements Initializable {
     private Random random = new Random();
     private long bestTime = Long.MAX_VALUE;
 
-    private static final String RESOURCE_NAME = "bestTime1.txt"; // placed under src/main/resources
+    private static final String RESOURCE_NAME = "react_bestTime1.txt"; // placed under src/main/resources
     private static final Path USER_SAVE = Paths.get(System.getProperty("user.home"), ".reaction-time", RESOURCE_NAME);
 
     @FXML
@@ -153,9 +153,9 @@ public class Test1Controller  implements Initializable {
 
         try {
             // Load the result screen
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("result1.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("react_result1.fxml"));
             Parent root = loader.load();
-            Result1Controller controller = loader.getController();
+            react_Result1Controller controller = loader.getController();
             controller.setResults(average, bestTime);
 
             // Switch to the result screen

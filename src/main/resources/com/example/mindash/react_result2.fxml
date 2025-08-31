@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-background-color: #2b2b2b;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.reaction_time.Result2Controller">
+<BorderPane style="-fx-background-color: #2b2b2b;" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_Result2Controller">
     <center>
         <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #3a3a3a; -fx-padding: 30; -fx-background-radius: 10;">
             <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Test 2 Results" />

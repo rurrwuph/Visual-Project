@@ -93,7 +93,7 @@ public class MainMenu_Controller {
 
     @FXML
     private void launchReaction(ActionEvent event) {
-        switchScene("ReactionGame.fxml", event);
+        switchScene("react_menu.fxml", event);
     }
 
     // Helper method to switch scenes

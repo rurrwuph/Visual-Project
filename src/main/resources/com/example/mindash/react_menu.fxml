@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-background-color: #0a0a0a;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.reaction_time.MenuController">
+<BorderPane style="-fx-background-color: #0a0a0a;" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_MenuController">
     <center>
         <VBox alignment="CENTER" spacing="50">
             <!-- Image for the title -->
             <ImageView fitHeight="300" fitWidth="600" preserveRatio="true">
-                <Image url="@../../../reaction_time_image.png" />
+                <Image url="@react_reaction_time_image.png" />
             </ImageView>
 
             <!-- Buttons -->
