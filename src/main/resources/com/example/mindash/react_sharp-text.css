@@ -1,0 +1,22 @@
+/* sharp-text.css */
+.root {
+    -fx-snap-to-pixel: true;
+    -fx-font-smoothing-type: gray;
+}
+
+.text {
+    -fx-font-smoothing-type: gray;
+}
+
+.label {
+    -fx-font-smoothing-type: gray;
+}
+
+.button {
+    -fx-font-smoothing-type: gray;
+    -fx-background-radius: 5;
+}
+
+.text-field {
+    -fx-font-smoothing-type: gray;
+}
