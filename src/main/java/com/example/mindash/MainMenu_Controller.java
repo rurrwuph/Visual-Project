@@ -74,7 +74,7 @@ public class MainMenu_Controller {
 
     @FXML
     private void launchMemory(ActionEvent event) {
-        switchScene("MemoryGame.fxml", event);
+        switchScene("MemGame.fxml", event);
     }
 
     @FXML

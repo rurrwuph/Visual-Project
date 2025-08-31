@@ -1,0 +1,87 @@
+/* Root background */
+#parentPane {
+    -fx-background-color: #241B30;
+}
+
+/* Section: Board container */
+#boardPane {
+    -fx-background-color: #000000;
+}
+
+/* Title */
+.title {
+    -fx-text-fill: #FFFFFF;
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+}
+
+/* Hearts */
+.heart {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.15), 10, 0.2, 0, 0);
+}
+
+/* Grid area look */
+.pattern-grid {
+    -fx-background-color: #2a2a2a;
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-width: 1;
+    -fx-padding: 16;
+}
+
+/* Submit button (pill) */
+.pill-btn {
+    -fx-background-color: linear-gradient(to bottom, #2d2a36, #1e1a27);
+    -fx-text-fill: #E6EDF3;
+    -fx-font-size: 18px;
+    -fx-font-family: "Dubai Medium";
+    -fx-background-radius: 16;
+    -fx-border-radius: 16;
+    -fx-border-color: #847E8C;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-padding: 10 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.3, 0, 2);
+}
+
+.pill-btn:hover {
+    /* subtle shine/glow on hover */
+    -fx-effect: dropshadow(gaussian, rgba(140,120,255,0.85), 16, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(to bottom, #3a3650, #272238);
+}
+
+.pill-btn:pressed {
+    -fx-translate-y: 1;
+    -fx-background-color: linear-gradient(to bottom, #211e2b, #191624);
+}
+
+/* Back icon button */
+.icon-btn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 999;
+    -fx-cursor: hand;
+}
+
+.icon-btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.25), 10, 0.3, 0, 0);
+}
+
+/* Dim the scene and center content */
+#gameOverlay {
+    -fx-background-color: rgba(0,0,0,0.55);
+}
+
+/* Nicer card-like label */
+#gameOverLabel {
+    -fx-text-fill: linear-gradient(#F5E6FF, #FFFFFF);
+    -fx-font-size: 44px;
+    -fx-font-weight: 900;
+    -fx-padding: 16 28;
+    -fx-background-color: rgba(35, 29, 56, 0.90);
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.45), 28, 0.35, 0, 0);
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+

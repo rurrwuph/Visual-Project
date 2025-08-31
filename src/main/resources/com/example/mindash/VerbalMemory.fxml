@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="730.0" prefWidth="920.0" stylesheets="@VerbalMem.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.Mem_VerbalMem">
+
+    <!-- Title -->
+    <Label alignment="CENTER" layoutX="352.0" layoutY="22.0" prefHeight="40.0" prefWidth="256.0" text="Verbal Memory" textFill="WHITE">
+        <font>
+            <Font name="Book Antiqua" size="30.0" />
+        </font>
+    </Label>
+
+    <!-- Hearts -->
+    <HBox layoutX="740.0" layoutY="16.0" spacing="8">
+        <children>
+            <ImageView fx:id="heart1" fitHeight="53.0" fitWidth="49.0" preserveRatio="true">
+                <image><Image url="@love-always-wins.png" /></image>
+            </ImageView>
+            <ImageView fx:id="heart2" fitHeight="49.0" fitWidth="60.0" preserveRatio="true">
+                <image><Image url="@love-always-wins.png" /></image>
+            </ImageView>
+            <ImageView fx:id="heart3" fitHeight="52.0" fitWidth="51.0" preserveRatio="true">
+                <image><Image url="@love-always-wins.png" /></image>
+            </ImageView>
+        </children>
+    </HBox>
+
+    <!-- Big word -->
+    <Label fx:id="wordLabel" alignment="CENTER" layoutX="108.0" layoutY="220.0" prefHeight="100.0" prefWidth="704.0">
+        <font>
+            <Font name="Book Antiqua" size="60.0" />
+        </font>
+    </Label>
+
+    <!-- Score -->
+    <Label fx:id="scoreLabel" alignment="CENTER" layoutX="410.0" layoutY="90.0" prefHeight="40.0" prefWidth="91.0" text="Score">
+        <font>
+            <Font name="Book Antiqua" size="20.0" />
+        </font>
+    </Label>
+
+    <!-- Inner play area -->
+    <AnchorPane fx:id="rootPane" layoutX="3.0" layoutY="76.0" prefHeight="639.0" prefWidth="914.0">
+        <children>
+            <Button fx:id="newButton" layoutX="161.0" layoutY="408.0" prefHeight="60.0" prefWidth="170.0" text="NEW" />
+            <Button fx:id="seenButton" layoutX="578.0" layoutY="408.0" prefHeight="60.0" prefWidth="170.0" text="SEEN" />
+        </children>
+    </AnchorPane>
+
+    <!-- Overlay message (centered) -->
+    <StackPane fx:id="overlay" managed="false" visible="false">
+        <children>
+            <Label fx:id="overlayMsg" prefWidth="700.0" wrapText="true" />
+        </children>
+        <AnchorPane.topAnchor>0.0</AnchorPane.topAnchor>
+        <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+        <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
+        <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
+    </StackPane>
+
+    <!-- Back button with icon -->
+    <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20;">
+        <graphic>
+            <ImageView fx:id="backIcon" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                <image><Image url="@download.png" /></image>
+            </ImageView>
+        </graphic>
+    </Button>
+
+</AnchorPane>

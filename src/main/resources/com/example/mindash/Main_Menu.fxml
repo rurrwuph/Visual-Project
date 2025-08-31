@@ -10,7 +10,7 @@
         <AnchorPane fx:id="parentPane" layoutY="50.0" prefHeight="412.0" prefWidth="742.0" style="-fx-background-color: gray;">
             <children>
                 <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" prefHeight="65.0" prefWidth="210.0" text="Typing" />
-                <Button fx:id="memoryButton" layoutY="138.0" mnemonicParsing="false" prefHeight="67.0" prefWidth="210.0" text="Memory" />
+                <Button fx:id="memoryButton" layoutY="138.0" mnemonicParsing="false" onAction="#launchMemory" prefHeight="67.0" prefWidth="210.0" text="Memory" />
                 <Button fx:id="reactionButton" layoutY="67.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="210.0" text="Reaction" />
             </children>
         </AnchorPane>
