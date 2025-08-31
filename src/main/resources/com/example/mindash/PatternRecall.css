@@ -1,6 +1,6 @@
 /* Root background */
 #parentPane {
-    -fx-background-color: #241B30;
+    -fx-background-color: #211A2B;
 }
 
 /* Section: Board container */
@@ -22,7 +22,7 @@
 
 /* Grid area look */
 .pattern-grid {
-    -fx-background-color: #2a2a2a;
+    -fx-background-color: #141414;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-color: rgba(255,255,255,0.08);

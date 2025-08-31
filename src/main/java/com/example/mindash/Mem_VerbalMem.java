@@ -13,22 +13,44 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.util.Duration;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class Mem_VerbalMem {
-    @FXML private AnchorPane rootPane;
-    @FXML private Label wordLabel;
-    @FXML private Label scoreLabel;
-    @FXML private Label overlayMsg;
-    @FXML private Button seenButton;
-    @FXML private Button newButton;
-    @FXML private ImageView backIcon;
-    @FXML private ImageView  heart1;
-    @FXML private ImageView  heart2;
-    @FXML private ImageView heart3;
-    @FXML private StackPane overlay;
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private Label wordLabel;
+    @FXML
+    private Label scoreLabel;
+    @FXML
+    private Label overlayMsg;
+    @FXML
+    private Button seenButton;
+    @FXML
+    private Button newButton;
+    @FXML
+    private ImageView backIcon;
+    @FXML
+    private ImageView heart1;
+    @FXML
+    private ImageView heart2;
+    @FXML
+    private ImageView heart3;
+    @FXML
+    private StackPane overlay;
 
     private final Random rng = new Random();
     private final Set<String> seenWords = new HashSet<>();
@@ -40,61 +62,62 @@ public class Mem_VerbalMem {
 
     private int lives = 3;
     private int score = 0;
+    private static final Path FILE = Paths.get(System.getProperty("user.home"), ".mindash", "verbalmem_scores.csv");
 
     private static final int MAX_WORDS = 100;
 
-    private static final List <String> L4 = new ArrayList<>();
-    private static final List <String> L5_6 = new ArrayList<>();
-    private static final List <String> L7_9 = new ArrayList<>();
-    private static boolean BUCKET_READY =false;
-    private static int i4 =0, i5_6 = 0, i7_9 =0;
+    private static final List<String> L4 = new ArrayList<>();
+    private static final List<String> L5_6 = new ArrayList<>();
+    private static final List<String> L7_9 = new ArrayList<>();
+    private static boolean BUCKET_READY = false;
+    private static int i4 = 0, i5_6 = 0, i7_9 = 0;
 
     private static final List<String> WORD_POOL = Arrays.asList(
 
             // — 4 letters (kept small; distinctive) —
-            "AURA","BRIM","CLAD","CRUX","CUSP","DAWN","DUSK","ETCH","FLUX","GLOW","GRIT","HAZE","HUSH",
-            "KNIT","LURK","MINT","MIRE","MOLT","ONYX","OPAL","PITH","RIFT","RIME","RUNE","SILT","SKEW","SMOG","SNUG","VIAL",
+            "AURA", "BRIM", "CLAD", "CRUX", "CUSP", "DAWN", "DUSK", "ETCH", "FLUX", "GLOW", "GRIT", "HAZE", "HUSH",
+            "KNIT", "LURK", "MINT", "MIRE", "MOLT", "ONYX", "OPAL", "PITH", "RIFT", "RIME", "RUNE", "SILT", "SKEW", "SMOG", "SNUG", "VIAL",
 
             // — 5 letters (core difficulty) —
-            "ACRID","AMBLE","APRON","ARROW","BASIL","BEVEL","BISON","BLAZE","BLEAK","BLEND","BLUFF","BLUNT","BRACE","BRINE",
-            "BRISK","BROOK","BURLY","CACHE","CADET","CARGO","CARVE","CAULK","CHAFE","CHANT","CHASM","CHIRP","CHOIR","CHOKE",
-            "CHORD","CIVIC","CLASH","CLEAT","CLERK","CLINK","CLOAK","CLOVE","COAST","CORAL","CORPS","CRANE","CRANK","CRASH",
-            "CRAVE","CREDO","CREST","CRISP","CROSS","CUMIN","CURIO","CURVE","CYCLE","DECAY","DELTA","DETOX","DIARY","DRAFT",
-            "DRAIN","DRAPE","DREAD","DREGS","DRIFT","DROLL","DROOP","DWELL","EERIE","ELUDE","EMBER","ENACT","ENSUE","EPOCH",
-            "EQUAL","EQUIP","ETHIC","FAINT","FEIGN","FERRY","FIBER","FJORD","FLAIR","FLESH","FLICK","FLINT","FLORA","FLOUR",
-            "FLUKE","FLUME","FLUSH","FORGE","FORTE","FRAIL","FRAUD","FROND","FROTH","GAUZE","GAUNT","GHOST","GLADE","GLARE",
-            "GLAZE","GLEAM","GLEAN","GLINT","GLOAT","GLOBE","GLOOM","GNASH","GNOME","GOUGE","GRAIL","GRAIN","GRASP","GRATE",
-            "GRAVE","GREED","GREET","GRIEF","GRIND","GRIPE","GROAN","GROVE","GRUFF","GRIME","GUILE","GUSTO","HALVE","HARSH",
-            "HAVEN","HAZEL","HEATH","HEFTY","HELIX","HERON","HINGE","HONEY","HORDE","HUMID","HUSKY","HYDRA","IDEAL","IDIOM",
-            "IDYLL","IGLOO","IMBUE","IMPEL","IMPLY","INERT","INGOT","IRATE","IRONY","ISLET","ITCHY","IVORY","JELLY","JERKY",
-            "JETTY","JEWEL","JOUST","JUMBO","KARMA","KNACK","KNOCK","LADEN","LAPSE","LARCH","LASSO","LATCH","LAYER","LEAFY",
-            "LEVER","LILAC","LIMBO","LIVID","LOAMY","LOFTY","LOGIC","LOOPY","LOTUS","LUCID","LURCH","LYRIC","MAGMA","MAIZE",
-            "MANGY","MAPLE","MARCH","MARSH","MAXIM","MERCY","MERIT","METAL","MIRTH","MOGUL","MOIST","MORAL","MORPH","MOSSY",
-            "MOTIF","MOTTO","MOUND","MOURN","MUCUS","MULCH","MURAL","MURKY","MUSKY","MUTED","NADIR","NAVEL","NEIGH","NERVE",
-            "NIECE","NINJA","NOBLE","NOVEL","NUDGE","NURSE","NYLON","OASIS","OCTET","ODDLY","ODIUM","OMBRE","ONION","OPERA",
-            "OPINE","OPTIC","ORBIT","ORGAN","OTTER","OVERT","OVINE","OXIDE","OZONE","PANIC","PARSE","PATCH","PAUSE","PECAN",
-            "PEDAL","PERCH","PESKY","PHASE","PHONY","PIXEL","PLAIT","PLATE","PLEAT","PLIER","PLUCK","PLUME","PLUSH","POISE",
-            "POLAR","POLKA","PRISM","PROBE","PRONG","PROSE","PROWL","PRUNE","PSALM","PULSE","PUPIL","PUREE","PYGMY","QUAIL",
-            "QUAKE","QUART","QUASH","QUEER","QUELL","QUERY","QUEST","QUICK","QUILL","QUILT","QUOTA","QUOTE","RADAR","RADON",
-            "RAZOR","REACT","RELIC","RENAL","REPAY","RHINO","RHYME","RIGID","RIPEN","RIVAL","RIVET","ROGUE","ROOST","ROUGE",
-            "ROUND","ROVER","RUSTY","SALVE","SAUCE","SCALD","SCARF","SCENE","SCION","SCOUR","SCOUT","SCOWL","SCRAP","SCREW",
-            "SEPIA","SERUM","SHADE","SHAFT","SHARD","SHARK","SHARP","SHEAR","SHEEN","SHELF","SHELL","SHIFT","SHINE","SHIRE",
-            "SHIRK","SHOCK","SHONE","SHORE","SHORN","SHRUB","SIEGE","SINEW","SIREN","SKEIN","SKULL","SLANT","SLATE","SLEEK",
-            "SLEET","SLICE","SLICK","SLING","SLOPE","SMEAR","SMELT","SMIRK","SMITE","SMOKE","SMOTE","SNARE","SNEER","SNIDE",
-            "SNIFF","SNIPE","SNUFF","SOOTY","SPEAR","SPELL","SPICE","SPIKE","SPINE","SPINY","SPLIT","SPORE","SPRIG","SPURT",
-            "SQUAD","SQUAT","STACK","STAIR","STAKE","STALL","STARE","STARK","STEAD","STEEL","STEER","STERN","STILT","STOIC",
-            "STOKE","STONE","STOOP","STORM","STOUT","STOVE","STRAP","STREW","STRIP","STUCK","STUDY","STUMP","STUNG","STUNT",
-            "SUAVE","SULLY","SURLY","SWAMI","SWASH","SWATH","SWEEP","SWEPT","SWIRL","SWORD","SYRUP","TACKY","TANGY","TAPER",
-            "TAROT","TAUNT","TEPID","TIGHT","TILDE","TIMID","TINNY","TITAN","TOAST","TONIC","TOPAZ","TORCH","TORSO","TORUS",
-            "TOXIC","TRACE","TRAIT","TRAMP","TRAWL","TREAD","TRIAD","TRICE","TRITE","TROVE","TRUCE","TRUNK","TRUSS","TURBO",
-            "TWEAK","TWINE","TWIRL","ULCER","ULTRA","UMBRA","UNLIT","UNSET","UNTIE","UPEND","UPSET","URBAN","UTTER","VAGUE",
-            "VALET","VALOR","VALVE","VAPOR","VAULT","VEGAN","VENOM","VERGE","VERSE","VIGIL","VILLA","VIRAL","VIRTU","VIVID",
-            "VOCAL","VOTER","VOUCH","VOWEL","WAFER","WAGER","WAIST","WALTZ","WARTY","WEARY","WEDGE","WEIRD","WHARF","WHEAT",
-            "WHIFF","WHIRL","WIDEN","WIELD","WISPY","WITTY","WOOZY","WRATH","WREAK","WRECK","WREST","WRING","WRIST","WRYLY",
-            "YACHT","YEARN","YIELD","ZESTY","ZONAL",
+            "ACRID", "AMBLE", "APRON", "ARROW", "BASIL", "BEVEL", "BISON", "BLAZE", "BLEAK", "BLEND", "BLUFF", "BLUNT", "BRACE", "BRINE",
+            "BRISK", "BROOK", "BURLY", "CACHE", "CADET", "CARGO", "CARVE", "CAULK", "CHAFE", "CHANT", "CHASM", "CHIRP", "CHOIR", "CHOKE",
+            "CHORD", "CIVIC", "CLASH", "CLEAT", "CLERK", "CLINK", "CLOAK", "CLOVE", "COAST", "CORAL", "CORPS", "CRANE", "CRANK", "CRASH",
+            "CRAVE", "CREDO", "CREST", "CRISP", "CROSS", "CUMIN", "CURIO", "CURVE", "CYCLE", "DECAY", "DELTA", "DETOX", "DIARY", "DRAFT",
+            "DRAIN", "DRAPE", "DREAD", "DREGS", "DRIFT", "DROLL", "DROOP", "DWELL", "EERIE", "ELUDE", "EMBER", "ENACT", "ENSUE", "EPOCH",
+            "EQUAL", "EQUIP", "ETHIC", "FAINT", "FEIGN", "FERRY", "FIBER", "FJORD", "FLAIR", "FLESH", "FLICK", "FLINT", "FLORA", "FLOUR",
+            "FLUKE", "FLUME", "FLUSH", "FORGE", "FORTE", "FRAIL", "FRAUD", "FROND", "FROTH", "GAUZE", "GAUNT", "GHOST", "GLADE", "GLARE",
+            "GLAZE", "GLEAM", "GLEAN", "GLINT", "GLOAT", "GLOBE", "GLOOM", "GNASH", "GNOME", "GOUGE", "GRAIL", "GRAIN", "GRASP", "GRATE",
+            "GRAVE", "GREED", "GREET", "GRIEF", "GRIND", "GRIPE", "GROAN", "GROVE", "GRUFF", "GRIME", "GUILE", "GUSTO", "HALVE", "HARSH",
+            "HAVEN", "HAZEL", "HEATH", "HEFTY", "HELIX", "HERON", "HINGE", "HONEY", "HORDE", "HUMID", "HUSKY", "HYDRA", "IDEAL", "IDIOM",
+            "IDYLL", "IGLOO", "IMBUE", "IMPEL", "IMPLY", "INERT", "INGOT", "IRATE", "IRONY", "ISLET", "ITCHY", "IVORY", "JELLY", "JERKY",
+            "JETTY", "JEWEL", "JOUST", "JUMBO", "KARMA", "KNACK", "KNOCK", "LADEN", "LAPSE", "LARCH", "LASSO", "LATCH", "LAYER", "LEAFY",
+            "LEVER", "LILAC", "LIMBO", "LIVID", "LOAMY", "LOFTY", "LOGIC", "LOOPY", "LOTUS", "LUCID", "LURCH", "LYRIC", "MAGMA", "MAIZE",
+            "MANGY", "MAPLE", "MARCH", "MARSH", "MAXIM", "MERCY", "MERIT", "METAL", "MIRTH", "MOGUL", "MOIST", "MORAL", "MORPH", "MOSSY",
+            "MOTIF", "MOTTO", "MOUND", "MOURN", "MUCUS", "MULCH", "MURAL", "MURKY", "MUSKY", "MUTED", "NADIR", "NAVEL", "NEIGH", "NERVE",
+            "NIECE", "NINJA", "NOBLE", "NOVEL", "NUDGE", "NURSE", "NYLON", "OASIS", "OCTET", "ODDLY", "ODIUM", "OMBRE", "ONION", "OPERA",
+            "OPINE", "OPTIC", "ORBIT", "ORGAN", "OTTER", "OVERT", "OVINE", "OXIDE", "OZONE", "PANIC", "PARSE", "PATCH", "PAUSE", "PECAN",
+            "PEDAL", "PERCH", "PESKY", "PHASE", "PHONY", "PIXEL", "PLAIT", "PLATE", "PLEAT", "PLIER", "PLUCK", "PLUME", "PLUSH", "POISE",
+            "POLAR", "POLKA", "PRISM", "PROBE", "PRONG", "PROSE", "PROWL", "PRUNE", "PSALM", "PULSE", "PUPIL", "PUREE", "PYGMY", "QUAIL",
+            "QUAKE", "QUART", "QUASH", "QUEER", "QUELL", "QUERY", "QUEST", "QUICK", "QUILL", "QUILT", "QUOTA", "QUOTE", "RADAR", "RADON",
+            "RAZOR", "REACT", "RELIC", "RENAL", "REPAY", "RHINO", "RHYME", "RIGID", "RIPEN", "RIVAL", "RIVET", "ROGUE", "ROOST", "ROUGE",
+            "ROUND", "ROVER", "RUSTY", "SALVE", "SAUCE", "SCALD", "SCARF", "SCENE", "SCION", "SCOUR", "SCOUT", "SCOWL", "SCRAP", "SCREW",
+            "SEPIA", "SERUM", "SHADE", "SHAFT", "SHARD", "SHARK", "SHARP", "SHEAR", "SHEEN", "SHELF", "SHELL", "SHIFT", "SHINE", "SHIRE",
+            "SHIRK", "SHOCK", "SHONE", "SHORE", "SHORN", "SHRUB", "SIEGE", "SINEW", "SIREN", "SKEIN", "SKULL", "SLANT", "SLATE", "SLEEK",
+            "SLEET", "SLICE", "SLICK", "SLING", "SLOPE", "SMEAR", "SMELT", "SMIRK", "SMITE", "SMOKE", "SMOTE", "SNARE", "SNEER", "SNIDE",
+            "SNIFF", "SNIPE", "SNUFF", "SOOTY", "SPEAR", "SPELL", "SPICE", "SPIKE", "SPINE", "SPINY", "SPLIT", "SPORE", "SPRIG", "SPURT",
+            "SQUAD", "SQUAT", "STACK", "STAIR", "STAKE", "STALL", "STARE", "STARK", "STEAD", "STEEL", "STEER", "STERN", "STILT", "STOIC",
+            "STOKE", "STONE", "STOOP", "STORM", "STOUT", "STOVE", "STRAP", "STREW", "STRIP", "STUCK", "STUDY", "STUMP", "STUNG", "STUNT",
+            "SUAVE", "SULLY", "SURLY", "SWAMI", "SWASH", "SWATH", "SWEEP", "SWEPT", "SWIRL", "SWORD", "SYRUP", "TACKY", "TANGY", "TAPER",
+            "TAROT", "TAUNT", "TEPID", "TIGHT", "TILDE", "TIMID", "TINNY", "TITAN", "TOAST", "TONIC", "TOPAZ", "TORCH", "TORSO", "TORUS",
+            "TOXIC", "TRACE", "TRAIT", "TRAMP", "TRAWL", "TREAD", "TRIAD", "TRICE", "TRITE", "TROVE", "TRUCE", "TRUNK", "TRUSS", "TURBO",
+            "TWEAK", "TWINE", "TWIRL", "ULCER", "ULTRA", "UMBRA", "UNLIT", "UNSET", "UNTIE", "UPEND", "UPSET", "URBAN", "UTTER", "VAGUE",
+            "VALET", "VALOR", "VALVE", "VAPOR", "VAULT", "VEGAN", "VENOM", "VERGE", "VERSE", "VIGIL", "VILLA", "VIRAL", "VIRTU", "VIVID",
+            "VOCAL", "VOTER", "VOUCH", "VOWEL", "WAFER", "WAGER", "WAIST", "WALTZ", "WARTY", "WEARY", "WEDGE", "WEIRD", "WHARF", "WHEAT",
+            "WHIFF", "WHIRL", "WIDEN", "WIELD", "WISPY", "WITTY", "WOOZY", "WRATH", "WREAK", "WRECK", "WREST", "WRING", "WRIST", "WRYLY",
+            "YACHT", "YEARN", "YIELD", "ZESTY", "ZONAL",
 
             // — 6–8 letters (rarer/longer; harder) —
-            "ABACUS","ABRIDGE","ACCRUAL","ACRIMON","ALCHEMY","AMBERGRIS","ANVILLY"
+            "ABACUS", "ABRIDGE", "ACCRUAL", "ACRIMON", "ALCHEMY", "AMBERGRIS", "ANVILLY"
     );
 
     @FXML
@@ -104,8 +127,8 @@ public class Mem_VerbalMem {
 
         bucketBuilt();
 
-        newButton.setOnAction(e->handleAnswer(false));
-        seenButton.setOnAction(e->handleAnswer(true));
+        newButton.setOnAction(e -> handleAnswer(false));
+        seenButton.setOnAction(e -> handleAnswer(true));
 
         refillnewDeck();
         nextWord();
@@ -115,21 +138,19 @@ public class Mem_VerbalMem {
 //
         boolean correct = (pressedSeen == currentWasSeen);
 
-        if(markAsSeen) {
+        if (markAsSeen) {
             seenWords.add(currentWord);
             markAsSeen = false;
         }
 
-        if(correct) {
+        if (correct) {
             score++;
-            scoreLabel.setText("Score: " +score);
+            scoreLabel.setText("Score: " + score);
             flashWord("#3CCB6C");
-        }
-
-        else {
+        } else {
             loseLife();
             flashWord("#E06363");
-            if(lives<=0) {
+            if (lives <= 0) {
                 endGame();
                 return;
             }
@@ -144,21 +165,19 @@ public class Mem_VerbalMem {
         // prob of showing a previously seen word
         double perSeen = Math.min(0.25 + 0.02 * seenWords.size(), 0.70);
 
-        if(!seenWords.isEmpty() && rng.nextDouble() <perSeen) {
+        if (!seenWords.isEmpty() && rng.nextDouble() < perSeen) {
 //            rand
             int index = rng.nextInt(seenWords.size());
-            Iterator <String> it = seenWords.iterator();
+            Iterator<String> it = seenWords.iterator();
 
-            for(int i=0; i<index; i++)
+            for (int i = 0; i < index; i++)
                 it.next();
 
             currentWord = it.next();
             currentWasSeen = true;
             markAsSeen = false;
-        }
-
-        else {
-            if(newDeck.isEmpty()) refillnewDeck();
+        } else {
+            if (newDeck.isEmpty()) refillnewDeck();
             currentWord = newDeck.pollFirst();
             currentWasSeen = false;
             markAsSeen = true;
@@ -174,15 +193,19 @@ public class Mem_VerbalMem {
 
     private void loseLife() {
         lives--;
-        if(lives<3) heart3.setVisible(false);
-        if(lives<2) heart2.setVisible(false);
-        if(lives<1) heart1.setVisible(false);
+        if (lives < 3) heart3.setVisible(false);
+        if (lives < 2) heart2.setVisible(false);
+        if (lives < 1) heart1.setVisible(false);
 
     }
 
     private void endGame() {
+        appendScore(score);
+
+        //disable buttons; show overlay
         setButtonEnabled(false);
-        showOverlay("Game Over!\nScore: " + score, true, 2000, this::goBackToMenu);
+        showResultsChart();
+//        showOverlay("Game Over!\nScore: " + score, true, 2000, this::goBackToMenu);
     }
 
     private void setButtonEnabled(boolean enabled) {
@@ -192,7 +215,7 @@ public class Mem_VerbalMem {
 
     private void showOverlay(String txt, boolean lockInout, int durationMs, Runnable after) {
         setButtonEnabled(false);
-        if(overlay!= null && overlayMsg != null) {
+        if (overlay != null && overlayMsg != null) {
             overlayMsg.setText(txt);
             overlayMsg.setAlignment(Pos.CENTER);
             overlayMsg.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
@@ -204,12 +227,12 @@ public class Mem_VerbalMem {
 
         PauseTransition p = new PauseTransition(Duration.millis(durationMs));
 
-        p.setOnFinished(e-> {
-            if(overlay!= null) {
+        p.setOnFinished(e -> {
+            if (overlay != null) {
                 overlay.setVisible(false);
                 overlay.setManaged(false);
             }
-            if(after != null ) after.run();
+            if (after != null) after.run();
         });
         p.play();
     }
@@ -233,12 +256,12 @@ public class Mem_VerbalMem {
 
 
     private void bucketBuilt() {
-        if(BUCKET_READY) return;
-        for(String w: WORD_POOL) {
+        if (BUCKET_READY) return;
+        for (String w : WORD_POOL) {
             int len = w.length();
-            if(len==4) L4.add(w);
-            else if(len<=6) L5_6.add(w);
-            else if(len<=9) L7_9.add(w);
+            if (len == 4) L4.add(w);
+            else if (len <= 6) L5_6.add(w);
+            else if (len <= 9) L7_9.add(w);
         }
 
         Collections.shuffle(L4);
@@ -269,9 +292,9 @@ public class Mem_VerbalMem {
         double t = Math.min(1.0, seenWords.size() / 40.0);
 
         // Start: more short/medium; Later: shift to medium/long
-        double w4   = 0.55 * (1.0 - t) + 0.20 * t;  // 55% -> 20%
-        double w56  = 0.35 * (1.0 - t) + 0.50 * t;  // 35% -> 50%
-        double w79  = 0.10 * (1.0 - t) + 0.30 * t;  // 10% -> 30%
+        double w4 = 0.55 * (1.0 - t) + 0.20 * t;  // 55% -> 20%
+        double w56 = 0.35 * (1.0 - t) + 0.50 * t;  // 35% -> 50%
+        double w79 = 0.10 * (1.0 - t) + 0.30 * t;  // 10% -> 30%
 
         // Generate a small batch into newDeck (keeps memory fresh and fast)
         int remaining = b4.size() + b56.size() + b79.size();
@@ -280,7 +303,7 @@ public class Mem_VerbalMem {
         List<String> batch = new ArrayList<>(batchSize);
         for (int i = 0; i < batchSize; i++) {
             // adjust weights if some buckets empty
-            double a4  = b4.isEmpty()  ? 0.0 : w4;
+            double a4 = b4.isEmpty() ? 0.0 : w4;
             double a56 = b56.isEmpty() ? 0.0 : w56;
             double a79 = b79.isEmpty() ? 0.0 : w79;
             double sum = a4 + a56 + a79;
@@ -299,5 +322,108 @@ public class Mem_VerbalMem {
 
         newDeck = new ArrayDeque<>(batch);
 
+    }
+
+    private static void appendScore(int score) {
+        try {
+            if (Files.notExists(FILE.getParent())) Files.createDirectories(FILE.getParent());
+
+            // Create file with header if new
+            if (Files.notExists(FILE)) {
+                Files.write(FILE, Collections.singletonList("timestamp,score"), StandardCharsets.UTF_8,
+                        StandardOpenOption.CREATE, StandardOpenOption.WRITE);
+            }
+            try (BufferedWriter w = Files.newBufferedWriter(FILE, StandardCharsets.UTF_8, StandardOpenOption.APPEND)) {
+                w.write(DateTimeFormatter.ISO_LOCAL_DATE_TIME.format(LocalDateTime.now()));
+                w.write(",");
+                w.write(Integer.toString(score));
+                w.write("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static List<ScorePoint> readScores() {
+        if (Files.notExists(FILE)) return new ArrayList<>();
+        List<ScorePoint> out = new ArrayList<>();
+        try (Stream<String> lines = Files.lines(FILE, StandardCharsets.UTF_8)) {
+            lines.skip(1).forEach(line -> {
+                String[] parts = line.split(",", 2);
+                if (parts.length == 2) {
+                    try {
+                        LocalDateTime t = LocalDateTime.parse(parts[0]);
+                        int s = Integer.parseInt(parts[1].trim());
+                        out.add(new ScorePoint(t, s));
+                    } catch (Exception ignore) {
+                    }
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return out;
+    }
+
+    public static final class ScorePoint {
+        public final LocalDateTime when;
+        public final int score;
+
+        public ScorePoint(LocalDateTime when, int score) {
+            this.when = when;
+            this.score = score;
+        }
+    }
+
+    private void showResultsChart() {
+        try {
+            // Read all scores, keep last 20
+            List<ScorePoint> all = readScores();
+            int n = all.size();
+            List<ScorePoint> last = (n > 20) ? all.subList(n - 20, n) : all;
+
+            // Check if there is data to plot
+            if (last.isEmpty()) {
+                showOverlay("No previous scores available", true, 2000, this::goBackToMenu);
+                return; // If no scores, return early
+            }
+
+            // Axes
+            CategoryAxis xAxis = new CategoryAxis();
+            xAxis.setLabel("Session (time)");
+            NumberAxis yAxis = new NumberAxis();
+            yAxis.setLabel("Score");
+
+            // Chart
+            BarChart<String, Number> chart = new BarChart<>(xAxis, yAxis);
+            chart.setTitle("Verbal Memory — Recent Scores");
+
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.setName("Score");
+
+            // Use compact time labels for X (formatted time)
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("MM-dd HH:mm");
+
+            for (ScorePoint p : last) {
+                series.getData().add(new XYChart.Data<>(fmt.format(p.when), p.score));
+            }
+            chart.getData().add(series);
+
+            // Apply the CSS styling for the chart
+            chart.getStylesheets().add(getClass().getResource("VerbalMem.css").toExternalForm());
+
+            // Show chart in a new stage
+            Stage chartStage = new Stage();
+            chartStage.setTitle("Your Progress");
+            chartStage.setScene(new Scene(new StackPane(chart), 800, 500));
+            chartStage.show();
+
+            chartStage.setOnHidden(ev -> goBackToMenu());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Fallback: if something goes wrong, go back to menu
+            goBackToMenu();
+        }
     }
 }

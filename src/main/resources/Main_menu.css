@@ -1,35 +1,109 @@
-/* Styling for the description label */
-.description-label {
+/* ---- Base Scene Styling ---- */
+.root {
+    -fx-font-family: "Book Antiqua", "Segoe UI", system;
+    -fx-background-color: linear-gradient(to bottom, #2b213a, #1d1628);
+}
+
+/* ---- Left Section (Parent Pane with Buttons) ---- */
+#parentPane {
+    -fx-background-color: #4F4A49; /* Dark background for left pane */
+    -fx-background-radius: 20;
+    -fx-padding: 16;
+}
+
+/* ---- Buttons with Hover and Press Effects ---- */
+#typingButton, #memoryButton, #reactionButton {
+    -fx-text-fill: #E6EDF3; /* Light text color */
+    -fx-font-size: 20px;
+    -fx-background-radius: 16px;
+    -fx-border-color: #847E8C; /* Lighter border */
+    -fx-border-radius: 16px;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+    -fx-padding: 15px 30px;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 10, 0.25, 0, 2);
+    -fx-scale-x: 1.0;
+    -fx-scale-y: 1.0;
+
+    /* Darker background gradient */
+    -fx-background-color: linear-gradient(to bottom, rgba(45, 30, 45, 0.45), rgba(45, 30, 45, 0.25)),
+        linear-gradient(to bottom, #3c2747, #2e1d38); /* Darker purple tones */
+}
+
+/* Accent Colors for Each Button */
+#typingButton {
+    -fx-background-color: linear-gradient(to bottom, rgba(121, 94, 255, 0.30), rgba(121, 94, 255, 0.12)),
+        linear-gradient(to bottom, #3c2747, #2e1d38); /* Darker shade for typing button */
+}
+
+#memoryButton {
+    -fx-background-color: linear-gradient(to bottom, rgba(80, 200, 120, 0.30), rgba(80, 200, 120, 0.12)),
+        linear-gradient(to bottom, #3c2747, #2e1d38); /* Darker shade for memory button */
+}
+
+#reactionButton {
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 99, 71, 0.30), rgba(255, 99, 71, 0.12)),
+        linear-gradient(to bottom, #3c2747, #2e1d38); /* Darker shade for reaction button */
+}
+
+/* Hover Effect for Buttons */
+#typingButton:hover, #memoryButton:hover, #reactionButton:hover {
+    -fx-effect: dropshadow(gaussian, rgba(121, 94, 255, 0.55), 22, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(to bottom, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04)),
+        linear-gradient(to bottom, #5f3e6e, #4b2b4e); /* Slightly lighter but still dark */
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+/* Pressed State for Buttons */
+#typingButton:pressed, #memoryButton:pressed, #reactionButton:pressed {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 8, 0.2, 0, 2);
+    -fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.25)),
+        linear-gradient(to bottom, #2b1f32, #1f1726); /* Even darker for pressed state */
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ---- Right Section (Name, Image, and Description) ---- */
+#rootPane {
+    -fx-background-color: #4F4A49;
+    -fx-background-radius: 20;
+    -fx-padding: 16;
+}
+
+/* Name Label Styling */
+#nameLabel {
+    -fx-text-fill: #fffafa;
+    -fx-font-size: 20px;
+    -fx-font-family: "Book Antiqua", sans-serif;
+    -fx-font-weight: 600;
+}
+
+/* Description Label Styling */
+#descriptionLabel {
     -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.8);
     -fx-font-size: 16px;
+    -fx-font-family: "Book Antiqua", sans-serif;
+    -fx-background-color: rgba(0, 0, 0, 0.8);
     -fx-padding: 10;
-    -fx-background-radius: 8;
-    -fx-opacity: 0;
+    -fx-background-radius: 10;
+    -fx-opacity: 0; /* Start invisible */
     -fx-transition: opacity 0.3s ease-in-out;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0.5, 0, 0); /* Drop shadow for depth */
 }
 
-/* Buttons with modern design */
-.button {
-    -fx-background-color: #241B30;
-    -fx-border-color: #847E8C;
-    -fx-background-radius: 12px;
-    -fx-border-radius: 12px;
-    -fx-cursor: hand;
-    -fx-font-size: 20px;
-    -fx-font-family: "Roboto", sans-serif;
-    -fx-text-fill: white;
-    -fx-padding: 15px 30px;
+/* ImageView Styling */
+#imageView {
+    -fx-border-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 10, 0.25, 0, 2);
 }
 
-.button:hover {
-    -fx-background-color: #575A67;
+/* Main Title Label */
+#titleLabel {
     -fx-text-fill: white;
-}
-
-/* Optional: Styling for button text */
-.button > .text {
-    -fx-font-size: 20px;
-    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 25px;
+    -fx-font-weight: 700;
+    -fx-alignment: center;
+    -fx-font-family: "Book Antiqua", sans-serif;
 }

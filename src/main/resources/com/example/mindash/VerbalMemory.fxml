@@ -7,6 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="730.0" prefWidth="920.0" stylesheets="@VerbalMem.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.Mem_VerbalMem">
@@ -41,7 +44,7 @@
     </Label>
 
     <!-- Score -->
-    <Label fx:id="scoreLabel" alignment="CENTER" layoutX="410.0" layoutY="90.0" prefHeight="40.0" prefWidth="91.0" text="Score">
+    <Label fx:id="scoreLabel" alignment="CENTER" layoutX="386.0" layoutY="90.0" prefHeight="42.0" prefWidth="170.0" text="Score">
         <font>
             <Font name="Book Antiqua" size="20.0" />
         </font>
@@ -65,14 +68,28 @@
         <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
         <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
     </StackPane>
-
-    <!-- Back button with icon -->
-    <Button layoutX="14.0" layoutY="20.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-border-radius: 20;">
-        <graphic>
-            <ImageView fx:id="backIcon" fitHeight="36.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                <image><Image url="@download.png" /></image>
-            </ImageView>
-        </graphic>
-    </Button>
+   <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1D0B29; -fx-background-radius: 20; -fx-border-color: #413E47; -fx-border-radius: 20;" text="⬅">
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.7201356887817383" blue="1.0" />
+                  </color>
+               </Stop>
+               <Stop offset="0.006729475100942127">
+                  <color>
+                     <Color red="0.7201356887817383" blue="1.0" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.557894766330719" green="0.44838207960128784" blue="0.44838207960128784" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
+   </Button>
 
 </AnchorPane>

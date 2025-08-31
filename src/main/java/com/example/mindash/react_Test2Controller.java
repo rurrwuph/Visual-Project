@@ -106,7 +106,7 @@ public class react_Test2Controller implements Initializable {
         ball.y = 0;
 
         // Random color (red balls are targets)
-        if (random.nextInt(5) == 0) {
+        if (random.nextInt(2) == 0) {
             ball.circle.setFill(Color.RED);
             ball.circle.setUserData("target");
         } else {

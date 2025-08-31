@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="730.0" prefWidth="920.0" stylesheets="@AssociateMatch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.Mem_AssociationMatchController">
+<AnchorPane prefHeight="730.0" prefWidth="972.0" stylesheets="@AssociateMatch.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.Mem_AssociationMatchController">
 
     <!-- Title -->
     <Label alignment="CENTER" layoutX="333.0" layoutY="14.0" prefHeight="39.0" prefWidth="254.0" text="Association Match">
@@ -20,10 +24,10 @@
     <Label fx:id="statusLabel" alignment="CENTER" layoutX="118.0" layoutY="354.0" prefHeight="103.0" prefWidth="730.0" visible="false" />
 
     <!-- Inner play area -->
-    <AnchorPane fx:id="rootPane" layoutX="-1.0" layoutY="66.0" prefHeight="694.0" prefWidth="860.0">
+    <AnchorPane fx:id="rootPane" layoutY="53.0" prefHeight="668.0" prefWidth="972.0">
         <children>
             <!-- Restart Button -->
-            <Button fx:id="restartButton" layoutX="840.0" layoutY="615.0" text="Restart" />
+            <Button fx:id="restartButton" layoutX="843.0" layoutY="606.0" text="Restart" />
 
             <!-- Attempts Label -->
             <Label fx:id="attemptsLabel" layoutX="28.0" layoutY="615.0" text="Attempts: 0">
@@ -31,24 +35,41 @@
                     <Font name="Book Antiqua" size="20.0" />
                 </font>
             </Label>
+         <LineChart fx:id="progressChart" layoutX="99.0" layoutY="86.0" prefHeight="446.0" prefWidth="774.0" visible="false">
+           <xAxis>
+             <CategoryAxis label="Attempts/Rounds" side="BOTTOM" />
+           </xAxis>
+           <yAxis>
+             <NumberAxis label="Time (seconds)" side="LEFT" />
+           </yAxis>
+         </LineChart>
         </children>
     </AnchorPane>
 
     <!-- Preview button -->
-    <Button fx:id="previewButton" layoutX="731.0" layoutY="8.0" prefHeight="51.0" prefWidth="157.0" text="Preview 💡">
+    <Button fx:id="previewButton" layoutX="770.0" layoutY="8.0" prefHeight="51.0" prefWidth="157.0" text="Preview 💡">
         <font>
             <Font name="Dubai Medium" size="20.0" />
         </font>
     </Button>
 
     <!-- Back button with icon -->
-    <Button layoutX="14.0" layoutY="4.0" mnemonicParsing="false" onAction="#backto" prefHeight="45.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-background-radius: 20;">
-        <graphic>
-            <ImageView fitHeight="37.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@download.png" />
-                </image>
-            </ImageView>
-        </graphic>
+    <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" onAction="#backto" prefHeight="45.0" prefWidth="62.0" style="-fx-background-color: transparent; -fx-background-radius: 20;" text="⬅">
+      <textFill>
+         <LinearGradient endX="1.0" endY="1.0">
+            <stops>
+               <Stop>
+                  <color>
+                     <Color red="0.7306666374206543" green="0.2133333384990692" blue="0.75789475440979" />
+                  </color>
+               </Stop>
+               <Stop offset="1.0">
+                  <color>
+                     <Color red="0.7684210538864136" green="0.648888885974884" blue="0.648888885974884" />
+                  </color>
+               </Stop>
+            </stops>
+         </LinearGradient>
+      </textFill>
     </Button>
 </AnchorPane>

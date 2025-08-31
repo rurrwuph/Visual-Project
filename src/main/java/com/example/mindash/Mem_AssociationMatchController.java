@@ -26,6 +26,7 @@ public class Mem_AssociationMatchController {
     @FXML private Label attemptsLabel;
     @FXML private Button restartButton;
     @FXML private Button previewButton;
+    @FXML private Label timerLabel;
 
     private GridPane cardsGrid;
     private StackPane overlay;
@@ -34,7 +35,7 @@ public class Mem_AssociationMatchController {
 
     // Tuning
     private static final int START_ROWS = 2, START_COLS = 2;
-    private static final int MAX_ROWS = 5, MAX_COLS = 5;
+    private static final int MAX_ROWS = 6, MAX_COLS = 6;
     private static final boolean PREVIEW_AT_START = true;
     private static final int PREVIEW_BASE_MS = 2000;         // base preview duration
     private static final int PREVIEW_PER_PAIR_MS = 120;      // per-pair add
@@ -150,6 +151,7 @@ public class Mem_AssociationMatchController {
         ensureEvenCells();
         int pairCount = (rows * cols) / 2;
 
+        matchesFound =0;
         // constraints
         cardsGrid.getChildren().clear();
         cardsGrid.getColumnConstraints().clear();
@@ -285,7 +287,8 @@ public class Mem_AssociationMatchController {
             setPreviewCountOnBtn(getPreviewCountFromBtn() + 1); // reward
             startNewBoard();
         } else {
-            showAndReturn("🎉 Congratulations!\nYou cleared Association Match!");
+
+            showAndReturn("Average Attempt/Round:  "+ String.valueOf(attempts)+ "/" +String.valueOf(matchesFound));
         }
     }
 
