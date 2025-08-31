@@ -65,7 +65,7 @@ public class react_Test2Controller implements Initializable {
                 double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
 
                 // Create new balls occasionally
-                if (random.nextInt(100) < 3) {
+                if (random.nextInt(100) < 5) {
                     createBall();
                 }
 

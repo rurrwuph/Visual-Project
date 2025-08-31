@@ -103,7 +103,8 @@ public class MainMenu_Controller {
 
             Scene scene = new Scene(fxmlLoader.load());
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
