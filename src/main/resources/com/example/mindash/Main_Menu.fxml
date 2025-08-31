@@ -2,19 +2,45 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="460.0" prefWidth="741.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.MainMenu_Controller">
     <children>
+        <!-- Left section containing buttons -->
         <AnchorPane fx:id="parentPane" layoutY="50.0" prefHeight="412.0" prefWidth="742.0" style="-fx-background-color: gray;">
             <children>
-                <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" prefHeight="65.0" prefWidth="210.0" text="Typing" />
-                <Button fx:id="memoryButton" layoutY="138.0" mnemonicParsing="false" onAction="#launchMemory" prefHeight="67.0" prefWidth="210.0" text="Memory" />
-                <Button fx:id="reactionButton" layoutY="67.0" mnemonicParsing="false" prefHeight="71.0" prefWidth="210.0" text="Reaction" />
+                <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" prefHeight="70.0" prefWidth="210.0" text="Typing" />
+                <Button fx:id="memoryButton" layoutY="152.0" mnemonicParsing="false" onAction="#launchMemory" prefHeight="70.0" prefWidth="210.0" text="Memory" />
+                <Button fx:id="reactionButton" layoutY="76.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="210.0" text="Reaction" />
+      
+              <!-- Right section containing name label, image, and description label -->
+              <AnchorPane layoutX="212.0" prefHeight="416.0" prefWidth="531.0" style="-fx-background-color: #4F4A49;">
+                  <children>
+                      <!-- Name label at the top -->
+                      <Label fx:id="nameLabel" layoutX="30.0" layoutY="27.0" prefHeight="30.0" prefWidth="160.0" text="Name Label">
+                          <font>
+                              <Font size="20.0" />
+                          </font>
+                      </Label>
+      
+                      <!-- Image below the name label -->
+                      <ImageView fx:id="imageView" fitHeight="171.0" fitWidth="200.0" layoutX="30.0" layoutY="77.0" pickOnBounds="true" preserveRatio="true" />
+      
+                      <!-- Description label (this will be updated on hover) -->
+                      <Label fx:id="descriptionLabel" layoutX="30.0" layoutY="274.0" prefHeight="124.0" prefWidth="488.0" text="Label" visible="false">
+                          <font>
+                              <Font size="15.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </AnchorPane>
             </children>
         </AnchorPane>
-        <Label layoutX="319.0" layoutY="7.0" prefHeight="38.0" prefWidth="103.0" text="MinDash">
+
+        <!-- Main title label -->
+        <Label layoutX="319.0" layoutY="7.0" prefHeight="38.0" prefWidth="103.0" text="MinDash" textFill="WHITE">
             <font>
                 <Font size="25.0" />
             </font>

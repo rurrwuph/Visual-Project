@@ -8,6 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -28,26 +30,20 @@ public class MainMenu_Controller {
     @FXML
     private Button reactionButton;
     @FXML
+    private Label descriptionLabel; // Reference to the description label
+    @FXML
+    private Label nameLabel; // Reference to the name label
+    @FXML
+    private ImageView imageView; // Reference to the ImageView
+    @FXML
     private AnchorPane parentPane; // Reference to the parent pane for dynamic placement
-
-    private Label descriptionLabel;
 
     @FXML
     public void initialize() {
-        // Create and style the description label dynamically
-        descriptionLabel = new Label("Hover over a button to see the description");
-        descriptionLabel.setStyle("-fx-text-fill: white; -fx-background-color: rgba(0, 0, 0, 0.7); -fx-font-size: 16px; -fx-padding: 10;");
-        descriptionLabel.setVisible(false); // Initially hidden
-
-        // Set the description label's position to the right side
-        AnchorPane.setTopAnchor(descriptionLabel, 100.0); // Adjust the vertical position as needed
-        AnchorPane.setRightAnchor(descriptionLabel, 20.0); // Anchoring to the right side
-        parentPane.getChildren().add(descriptionLabel); // Add it to the scene
-
         // Set up the event handlers for the buttons
-        typingButton.setOnMouseEntered(e -> showDescription("Test your typing skills. Challenge your speed and accuracy!"));
-        memoryButton.setOnMouseEntered(e -> showDescription("Sharpen your memory with pattern recognition challenges!"));
-        reactionButton.setOnMouseEntered(e -> showDescription("Test your reaction time with quick-response games!"));
+        typingButton.setOnMouseEntered(e -> showTypingContent());
+        memoryButton.setOnMouseEntered(e -> showMemoryContent());
+        reactionButton.setOnMouseEntered(e -> showReactionContent());
 
         // Hide description when mouse exits the button area
         typingButton.setOnMouseExited(e -> hideDescription());
@@ -55,15 +51,33 @@ public class MainMenu_Controller {
         reactionButton.setOnMouseExited(e -> hideDescription());
     }
 
-    // Show description dynamically when hovering over a button
-    private void showDescription(String description) {
-        descriptionLabel.setText(description);
-        descriptionLabel.setVisible(true);
+    // Show content dynamically when hovering over the typing button
+    private void showTypingContent() {
+        nameLabel.setText("Typing Challenge");
+        descriptionLabel.setText("Test your typing skills. Challenge your speed and accuracy!");
+        imageView.setImage(new Image(getClass().getResourceAsStream("keyboard_switch.png")));
+        descriptionLabel.setVisible(true); // Make the label visible
+    }
+
+    // Show content dynamically when hovering over the memory button
+    private void showMemoryContent() {
+        nameLabel.setText("Memory Challenge");
+        descriptionLabel.setText("Sharpen your memory with pattern recognition challenges!");
+        imageView.setImage(new Image(getClass().getResourceAsStream("love-always-wins.png")));
+        descriptionLabel.setVisible(true); // Make the label visible
+    }
+
+    // Show content dynamically when hovering over the reaction button
+    private void showReactionContent() {
+        nameLabel.setText("Reaction Challenge");
+        descriptionLabel.setText("Test your reaction time with quick-response games!");
+        imageView.setImage(new Image(getClass().getResourceAsStream("lightning.png")));
+        descriptionLabel.setVisible(true); // Make the label visible
     }
 
     // Hide description when mouse exits the button area
     private void hideDescription() {
-        descriptionLabel.setVisible(false);
+        descriptionLabel.setVisible(false); // Hide the label when mouse exits
     }
 
     // Launch corresponding game when button is clicked
@@ -85,23 +99,13 @@ public class MainMenu_Controller {
     // Helper method to switch scenes
     private void switchScene(String fxmlFile, ActionEvent event) {
         try {
-//            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-//            Scene scene = new Scene(root);
-//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//            stage.setScene(scene);
-//            stage.show();
-
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
 
             Scene scene = new Scene(fxmlLoader.load());
-
             scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-            Stage stage=new Stage();
-            stage.setTitle("Typing Speed Checker");
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

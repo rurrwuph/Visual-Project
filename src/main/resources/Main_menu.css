@@ -1,20 +1,26 @@
 /* Styling for the description label */
 .description-label {
     -fx-text-fill: white;
-    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-background-color: rgba(0, 0, 0, 0.8);
     -fx-font-size: 16px;
     -fx-padding: 10;
-    -fx-border-radius: 10;
-    -fx-max-width: 300px;
+    -fx-background-radius: 8;
+    -fx-opacity: 0;
+    -fx-transition: opacity 0.3s ease-in-out;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 5, 0.5, 0, 0); /* Drop shadow for depth */
 }
 
-/* Styling for the buttons */
+/* Buttons with modern design */
 .button {
     -fx-background-color: #241B30;
     -fx-border-color: #847E8C;
-    -fx-background-radius: 15;
-    -fx-border-radius: 15;
+    -fx-background-radius: 12px;
+    -fx-border-radius: 12px;
     -fx-cursor: hand;
+    -fx-font-size: 20px;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-text-fill: white;
+    -fx-padding: 15px 30px;
 }
 
 .button:hover {
@@ -25,5 +31,5 @@
 /* Optional: Styling for button text */
 .button > .text {
     -fx-font-size: 20px;
-    -fx-font-family: "Book Antiqua";
+    -fx-font-family: "Roboto", sans-serif;
 }
