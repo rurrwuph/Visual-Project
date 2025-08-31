@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="800.0" spacing="10.0" styleClass="main-vbox" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.TypingTestController">
+    <padding>
+        <Insets bottom="40.0" left="40.0" right="40.0" top="20.0" />
+    </padding>
+
+    <Label styleClass="main-title" text="Typing Speed Test" />
+
+    <!-- Test Duration Spinner -->
+    <HBox alignment="CENTER" spacing="15.0" styleClass="settings-hbox">
+        <Label styleClass="setting-label" text="Test Duration (seconds):" />
+        <Spinner fx:id="testDurationSpinner" editable="true" styleClass="duration-spinner">
+            <!-- Integer value factory is set in Scene Builder properties -->
+        </Spinner>
+    </HBox>
+
+    <!-- Countdown Label - visible is false initially, managed is true by default now -->
+    <Label fx:id="countdownLabel" styleClass="countdown-label" text="" visible="false" />
+
+    <!-- Live Timer Display -->
+    <Label fx:id="timeLabel" styleClass="time-label-main" text="Time: 60s" />
+
+    <!-- Prompt Text Display -->
+    <TextFlow fx:id="promptTextFlow" prefHeight="180.0" styleClass="prompt-text-flow" VBox.vgrow="ALWAYS" />
+
+    <!-- User Input Area -->
+    <TextArea fx:id="inputTextArea" prefHeight="180.0" promptText="Start typing here..." styleClass="input-text-area" wrapText="true" VBox.vgrow="ALWAYS" />
+
+    <!-- Current Results Display -->
+    <Label fx:id="resultLabel" styleClass="current-result-label" text="WPM: 0 | Accuracy: 0%" />
+
+    <!-- Control Buttons -->
+    <HBox alignment="CENTER" spacing="15.0" styleClass="control-buttons-hbox">
+        <Button fx:id="startStopButton" onAction="#startStopButtonAction" styleClass="start-stop-button" text="Start" />
+        <Button fx:id="openCustomTextWindowButton" onAction="#openCustomTextWindowAction" styleClass="custom-text-button" text="Enter Custom Text" />
+        <Button fx:id="pauseResumeButton" disable="true" onAction="#pauseResumeAction" styleClass="pause-resume-button" text="Pause" visible="false" />
+    </HBox>
+</VBox>

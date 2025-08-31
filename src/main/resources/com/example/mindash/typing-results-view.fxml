@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="794.0" prefWidth="866.0" spacing="20.0" styleClass="results-vbox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.TypingResultsController">
+    <padding>
+        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+    </padding>
+
+    <Label styleClass="results-title" text="Typing Test Summary" />
+
+    <VBox alignment="CENTER" spacing="10.0" styleClass="results-section">
+        <Label fx:id="finalWpmLabel" styleClass="result-metric-label" text="Your WPM: 0" />
+        <Label fx:id="highestWpmLabel" styleClass="result-comparison-label" text="Highest WPM: 0" />
+        <ProgressBar fx:id="wpmProgressBar" prefWidth="350.0" progress="0.0" styleClass="results-progress-bar" />
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="10.0" styleClass="results-section">
+        <Label fx:id="finalAccuracyLabel" styleClass="result-metric-label" text="Your Accuracy: 0%" />
+        <Label fx:id="highestAccuracyLabel" styleClass="result-comparison-label" text="Highest Accuracy: 0%" />
+        <ProgressBar fx:id="accuracyProgressBar" prefWidth="350.0" progress="0.0" styleClass="results-progress-bar" />
+    </VBox>
+
+    <!-- Enhanced Statistics Display -->
+    <HBox alignment="CENTER" spacing="40.0" styleClass="results-section">
+        <Label fx:id="finalErrorCountLabel" styleClass="result-error-label" text="Errors: 0" />
+        <Label fx:id="finalBackspaceCountLabel" styleClass="result-backspace-label" text="Backspaces: 0" />
+    </HBox>
+
+    <!-- WPM Consistency Graph -->
+    <LineChart fx:id="wpmConsistencyChart" legendVisible="false" prefHeight="300.0" prefWidth="550.0" styleClass="wpm-chart" title="WPM Consistency Over Time" VBox.vgrow="ALWAYS">
+        <xAxis>
+            <NumberAxis autoRanging="false" label="Time (seconds)" lowerBound="0" upperBound="60" fx:id="xAxis" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis" autoRanging="true" label="WPM" lowerBound="0" upperBound="100" />
+        </yAxis>
+    </LineChart>
+
+    <Button fx:id="closeButton" onAction="#closeWindow" styleClass="close-button" text="Close" />
+</VBox>

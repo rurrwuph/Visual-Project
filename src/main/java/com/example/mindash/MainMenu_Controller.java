@@ -69,7 +69,7 @@ public class MainMenu_Controller {
     // Launch corresponding game when button is clicked
     @FXML
     private void launchTyping(ActionEvent event) {
-        switchScene("TypingGame.fxml", event);
+        switchScene("typing-checker.fxml", event);
     }
 
     @FXML
@@ -85,11 +85,23 @@ public class MainMenu_Controller {
     // Helper method to switch scenes
     private void switchScene(String fxmlFile, ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            Parent root = FXMLLoader.load(getClass().getResource(fxmlFile));
+//            Scene scene = new Scene(root);
+//            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+//            stage.setScene(scene);
+//            stage.show();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+
+            Scene scene = new Scene(fxmlLoader.load());
+
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
+            Stage stage=new Stage();
+            stage.setTitle("Typing Speed Checker");
             stage.setScene(scene);
             stage.show();
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }

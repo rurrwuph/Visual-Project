@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="300.0" prefWidth="400.0" spacing="15.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.TypingCustomTextController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Label text="Enter Your Custom Text:" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #a1a1a1;" />
+    <TextArea fx:id="customTextInputArea" promptText="Type or paste your custom text here (minimum 20 characters for meaningful test)..." wrapText="true" prefHeight="150.0" prefWidth="350.0" style="-fx-font-size: 14px; -fx-padding: 8px; -fx-border-color: #cccccc; -fx-border-radius: 5px;" />
+    <Button fx:id="applyButton" text="Apply Text" onAction="#applyText" style="-fx-background-color: #28a745; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 8px 15px; -fx-border-radius: 5px;" />
+    <Label fx:id="errorMessageLabel" text="" style="-fx-text-fill: red; -fx-font-size: 12px; -fx-max-width: 350px; -fx-wrap-text: true;" />
+</VBox>
