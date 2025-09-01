@@ -512,7 +512,7 @@ public class TypingTestController {
             Stage resultsStage = new Stage();
             resultsStage.setTitle("Typing Test Results");
             Scene scene = new Scene(fxmlLoader.load());
-
+            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
             URL cssUrl = getClass().getResource("styles.css");
             if (cssUrl != null) {
                 scene.getStylesheets().add(cssUrl.toExternalForm());

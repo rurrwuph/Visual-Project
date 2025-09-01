@@ -6,56 +6,48 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="900.0" spacing="20.0"
-      styleClass="main-vbox" xmlns="http://javafx.com/javafx/17"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.example.mindash.TypingTestController">
+<VBox alignment="TOP_CENTER" prefHeight="720.0" prefWidth="900.0" spacing="20.0" styleClass="main-vbox" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.TypingTestController">
 
     <padding>
-        <Insets top="25" right="40" bottom="25" left="40"/>
+        <Insets bottom="25" left="40" right="40" top="25" />
     </padding>
 
     <!-- Title -->
-    <Label text="⚡ Typing Speed Test" styleClass="main-title"/>
+    <Label styleClass="main-title" text="⚡ Typing Speed Test" />
 
     <!-- Top Controls: Duration + Timer -->
     <HBox alignment="CENTER" spacing="50" styleClass="top-controls-hbox">
         <HBox alignment="CENTER" spacing="10">
-            <Label text="Duration (seconds):" styleClass="setting-label"/>
-            <Spinner fx:id="testDurationSpinner" editable="true" prefWidth="80" styleClass="duration-spinner"/>
+            <Label styleClass="setting-label" text="Duration (seconds):" />
+            <Spinner fx:id="testDurationSpinner" editable="true" prefWidth="80" styleClass="duration-spinner" />
         </HBox>
 
         <!-- Timer & Countdown -->
         <VBox alignment="CENTER" spacing="5">
-            <Label fx:id="timeLabel" text="⏳ Time: 60s" styleClass="time-label-main"/>
-            <Label fx:id="countdownLabel" text="" styleClass="countdown-label" visible="false"/>
+            <Label fx:id="timeLabel" styleClass="time-label-main" text="⏳ Time: 60s" />
+            <Label fx:id="countdownLabel" styleClass="countdown-label" text="" visible="false" />
         </VBox>
     </HBox>
 
     <!-- Typing Prompt -->
     <StackPane prefHeight="180.0" styleClass="prompt-container">
-        <TextFlow fx:id="promptTextFlow" styleClass="prompt-text-flow"/>
+        <TextFlow fx:id="promptTextFlow" styleClass="prompt-text-flow" />
     </StackPane>
 
     <!-- User Input Area -->
-    <TextArea fx:id="inputTextArea" promptText="💬 Start typing here..."
-              wrapText="true" prefHeight="140.0"
-              styleClass="input-text-area"/>
+    <TextArea fx:id="inputTextArea" prefHeight="140.0" promptText="💬 Start typing here..." styleClass="input-text-area" wrapText="true" />
 
     <!-- Results Display -->
-    <Label fx:id="resultLabel" text="WPM: 0 | Accuracy: 0%"
-           styleClass="current-result-label"/>
+    <Label fx:id="resultLabel" styleClass="current-result-label" text="WPM: 0 | Accuracy: 0%" />
 
     <!-- Control Buttons -->
     <HBox alignment="CENTER" spacing="20" styleClass="control-buttons-hbox">
-        <Button fx:id="startStopButton" text="▶ Start" onAction="#startStopButtonAction" styleClass="start-stop-button"/>
-        <Button fx:id="pauseResumeButton" text="⏸ Pause" onAction="#pauseResumeAction"
-                styleClass="pause-resume-button" disable="true" visible="false"/>
-        <Button fx:id="openCustomTextWindowButton" text="✍ Enter Custom Text"
-                onAction="#openCustomTextWindowAction" styleClass="custom-text-button"/>
+        <Button fx:id="startStopButton" onAction="#startStopButtonAction" styleClass="start-stop-button" text="▶ Start" />
+        <Button fx:id="pauseResumeButton" disable="true" onAction="#pauseResumeAction" styleClass="pause-resume-button" text="⏸ Pause" visible="false" />
+        <Button fx:id="openCustomTextWindowButton" onAction="#openCustomTextWindowAction" styleClass="custom-text-button" text="✍ Enter Custom Text" />
     </HBox>
 </VBox>

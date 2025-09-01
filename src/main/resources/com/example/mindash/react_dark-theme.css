@@ -1,6 +1,6 @@
 /* dark-theme.css */
 .root {
-    -fx-background-color: #2b2b2b;
+    -fx-background-color: #2D213F; /* Dark purple */
 }
 
 .label {
@@ -8,19 +8,20 @@
 }
 
 .button {
-    -fx-background-color: linear-gradient(to bottom, #3a3a3a, #2a2a2a);
+    -fx-background-color: linear-gradient(to bottom, #4A2B63, #3B264F); /* Purple gradient */
     -fx-text-fill: white;
     -fx-background-radius: 15;
     -fx-border-radius: 15;
+    -fx-border-color: #FF527C; /* Pink/Red accent */
     -fx-border-width: 2;
 }
 
 .alert {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #3B264F; /* Darker purple */
 }
 
 .alert .header-panel {
-    -fx-background-color: #2a2a2a;
+    -fx-background-color: #251A36; /* Lighter purple */
 }
 
 .alert .content.label {

@@ -1,37 +1,37 @@
 /* Root + inner to match other screens */
 .core-root {
-    -fx-background-color: #241B30;
+    -fx-background-color: #2D213F; /* Dark purple/indigo */
     -fx-font-smoothing-type: lcd;
 }
 .inner-pane {
-    -fx-background-color: black;
+    -fx-background-color: #251A36; /* Lighter purple for inner panes */
 }
 
 /* Title */
 .title-label {
-    -fx-text-fill: #FFF0F0;
+    -fx-text-fill: #FFF;
     -fx-font-family: "Book Antiqua";
     -fx-font-weight: bold;
 }
 
 /* Narrative box */
 .narrative-label {
-    -fx-background-color: #241B30;
+    -fx-background-color: #3B264F;
     -fx-text-fill: #E6EDF3;
     -fx-font-size: 16px;
     -fx-padding: 14 18 14 18;
     -fx-background-radius: 12;
-    -fx-border-color: #847E8C;
+    -fx-border-color: #4A2B63;
     -fx-border-radius: 12;
 }
 
 /* Primary/glow buttons – same look as other screens */
 .button.btn-primary {
-    -fx-background-color: linear-gradient(#2A2238, #1F1A2E);
+    -fx-background-color: linear-gradient(#4A2B63, #3B264F);
     -fx-text-fill: #E6EDF3;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: #847E8C;
+    -fx-border-color: #9053A3;
     -fx-border-width: 1.2;
     -fx-padding: 18 18 18 18;
     -fx-cursor: hand;
@@ -40,18 +40,18 @@
     -fx-wrap-text: true;
 
     /* base (no glow) */
-    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.0), 0, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.0), 0, 0, 0, 0);
 }
 .button.btn-primary:hover {
-    -fx-background-color: linear-gradient(#3A2E4E, #2A2238);
-    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.75), 28, 0.45, 0, 0);
+    -fx-background-color: linear-gradient(#FF527C, #C53051);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.75), 28, 0.45, 0, 0);
 }
 .button.btn-primary:armed {
-    -fx-background-color: linear-gradient(#241B30, #1B1626);
-    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.35), 14, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(#C53051, #A02844);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.35), 14, 0.35, 0, 0);
 }
 .button.btn-primary:focused {
-    -fx-border-color: #B6A8FF;
+    -fx-border-color: #FF527C;
     -fx-border-width: 1.6;
 }
 
@@ -61,11 +61,11 @@
     -fx-text-fill: #E6EDF3;
     -fx-background-radius: 14;
     -fx-border-radius: 14;
-    -fx-border-color: #847E8C;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1.0;
     -fx-cursor: hand;
 }
 .button.btn-ghost:hover {
-    -fx-background-color: rgba(158,140,255,0.12);
-    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.55), 16, 0.35, 0, 0);
+    -fx-background-color: rgba(255,82,124,0.12);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.55), 16, 0.35, 0, 0);
 }

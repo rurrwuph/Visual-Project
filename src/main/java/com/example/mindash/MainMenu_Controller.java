@@ -6,120 +6,114 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class MainMenu_Controller {
-    @FXML
-    private Button typingButton;
-    @FXML
-    private Button memoryButton;
-    @FXML
-    private Button reactionButton;
-    @FXML
-    private Label descriptionLabel; // Reference to the description label
-    @FXML
-    private Label nameLabel; // Reference to the name label
-    @FXML
-    private ImageView imageView; // Reference to the ImageView
-    @FXML
-    private AnchorPane parentPane; // Reference to the parent pane for dynamic placement
 
-    @FXML
+    @FXML private Button typingButton;
+    @FXML private Button memoryButton;
+    @FXML private Button reactionButton;
+    @FXML private Label descriptionLabel;
+    @FXML private Label nameLabel;
+    @FXML private ImageView imageView;
+
+    private Button currentActiveButton;
+
+    private final Map<String, GameInfo> gameData = new HashMap<>();
+
     public void initialize() {
-        // Set up the event handlers for the buttons
-        typingButton.setOnMouseEntered(e -> showTypingContent());
-        memoryButton.setOnMouseEntered(e -> showMemoryContent());
-        reactionButton.setOnMouseEntered(e -> showReactionContent());
+        // Initialize game data
+        gameData.put("typing", new GameInfo("Typing Challenge",
+                "Test and improve your typing speed and accuracy by typing random words and sentences within a set time. Challenge yourself to type faster while reducing errors.",
+                "keyboard_switch.png"));
 
-        // Hide description when mouse exits the button area
-        typingButton.setOnMouseExited(e -> hideDescription());
-        memoryButton.setOnMouseExited(e -> hideDescription());
-        reactionButton.setOnMouseExited(e -> hideDescription());
+        gameData.put("memory", new GameInfo("Memory Challenge",
+                "A simple and enjoyable game to strengthen your memory. Watch and remember sequences of words, patterns, or match pairs of words, providing a rewarding mental workout.",
+                "love-always-wins.png"));
+
+        gameData.put("reaction", new GameInfo("Reaction Challenge",
+                "A great way to improve your reaction time and coordination. Respond to on-screen cues at your own pace, helping to rebuild your reflexes and focus during rehabilitation.",
+                "lightning.png"));
+
+        // Setup button hover effects, without overwriting onAction
+        setupButtonHover(typingButton, "typing");
+        setupButtonHover(memoryButton, "memory");
+        setupButtonHover(reactionButton, "reaction");
+
+        // Set an initial active button and display its content
+        setActiveButton(typingButton);
     }
 
-    // Show content dynamically when hovering over the typing button
-    private void showTypingContent() {
-        descriptionLabel.setVisible(true);
-        descriptionLabel.setOpacity(1);
-
-        nameLabel.setText("Typing Challenge");
-        descriptionLabel.setText("Test and improve your typing speed and accuracy by typing random words and sentences within a set time. Challenge yourself to type faster while reducing errors.");
-        descriptionLabel.setWrapText(true);
-
-        imageView.setImage(new Image(getClass().getResourceAsStream("keyboard_switch.png")));
-//        descriptionLabel.setVisible(true); // Make the label visible
+    private void setupButtonHover(Button button, String gameKey) {
+        button.setOnMouseEntered(e -> showGameContent(gameKey));
+        // The mouse exited event is not necessary for this UI design
     }
 
-    // Show content dynamically when hovering over the memory button
-    private void showMemoryContent() {
-        descriptionLabel.setVisible(true);
-        descriptionLabel.setOpacity(1);
-
-        nameLabel.setText("Memory Challenge");
-        descriptionLabel.setText("A simple and enjoyable game to strengthen your memory. Watch and remember sequences of words, patterns, match pair of words , providing a rewarding mental workout.");
-        descriptionLabel.setWrapText(true);
-
-        imageView.setImage(new Image(getClass().getResourceAsStream("love-always-wins.png")));
-//        descriptionLabel.setVisible(true); // Make the label visible
+    private void setActiveButton(Button button) {
+        if (currentActiveButton != null) {
+            currentActiveButton.getStyleClass().remove("active");
+        }
+        button.getStyleClass().add("active");
+        currentActiveButton = button;
+        // Also show content for the newly active button
+        String gameKey = getGameKeyFromButton(button);
+        if (gameKey != null) {
+            showGameContent(gameKey);
+        }
     }
 
-    // Show content dynamically when hovering over the reaction button
-    private void showReactionContent() {
-        descriptionLabel.setVisible(true);
-
-
-        nameLabel.setText("Reaction Challenge");
-        descriptionLabel.setText("A great way to improve your reaction time and coordination. Respond to on-screen cues at your own pace, helping to rebuild your reflexes and focus during rehabilitation.");
-        descriptionLabel.setWrapText(true);
-        imageView.setImage(new Image(getClass().getResourceAsStream("lightning.png")));
-//        descriptionLabel.setVisible(true); // Make the label visible
+    private String getGameKeyFromButton(Button button) {
+        if (button == typingButton) return "typing";
+        if (button == memoryButton) return "memory";
+        if (button == reactionButton) return "reaction";
+        return null;
     }
 
-    // Hide description when mouse exits the button area
-    private void hideDescription() {
-        descriptionLabel.setVisible(false); // Hide the label when mouse exits
+    private void showGameContent(String gameKey) {
+        GameInfo info = gameData.get(gameKey);
+        if (info != null) {
+            nameLabel.setText(info.name);
+            descriptionLabel.setText(info.description);
+            descriptionLabel.setVisible(true);
+            descriptionLabel.setWrapText(true);
+            try {
+                imageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(info.imagePath))));
+            } catch (Exception e) {
+                System.err.println("Failed to load image: " + info.imagePath);
+                imageView.setImage(null);
+            }
+        }
     }
 
-    // Launch corresponding game when button is clicked
+    //
+    // Launching the games
+    // The onAction from FXML will call these methods.
+    //
+
     @FXML
     private void launchTyping(ActionEvent event) {
+        setActiveButton(typingButton);
         switchScene("typing-checker.fxml", event);
     }
 
     @FXML
     private void launchMemory(ActionEvent event) {
-//        switchScene("MemGame.fxml", event);
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MemGame.fxml"));
-            Parent root = loader.load();
-
-
-            Stage stage = (Stage) parentPane.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        setActiveButton(memoryButton);
+        switchScene("MemGame.fxml", event);
     }
 
     @FXML
     private void launchReaction(ActionEvent event) {
+        setActiveButton(reactionButton);
         switchScene("react_menu.fxml", event);
     }
 
@@ -127,15 +121,23 @@ public class MainMenu_Controller {
     private void switchScene(String fxmlFile, ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = fxmlLoader.load();
 
-            Scene scene = new Scene(fxmlLoader.load());
-            scene.getStylesheets().add(getClass().getResource("styles.css").toExternalForm());
-            //Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Get the current Stage from the event source
             Stage stage = new Stage();
+
+            // Create a new Scene with the loaded FXML root
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("MainMenu.css")).toExternalForm());
+
+            // Set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
-        } catch (Exception e) {
+        } catch (IOException e) {
+            System.err.println("Failed to load FXML file: " + fxmlFile);
             e.printStackTrace();
         }
     }
+
+    private record GameInfo(String name, String description, String imagePath) {}
 }

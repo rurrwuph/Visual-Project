@@ -1,59 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.net.URL?>
 
-<AnchorPane prefHeight="460.0" prefWidth="736.0" style="-fx-background-color: #110817; -fx-background-radius: 10; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.MainMenu_Controller">
+<HBox alignment="TOP_LEFT" prefHeight="550.0" prefWidth="900.0" styleClass="main-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.MainMenu_Controller">
+    <stylesheets>
+        <URL value="@MainMenu.css" />
+    </stylesheets>
     <children>
-        <!-- Left section containing buttons -->
-        <AnchorPane fx:id="parentPane" layoutY="50.0" prefHeight="409.0" prefWidth="742.0" style="-fx-background-color: #242026;">
-            <children>
-                <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" prefHeight="70.0" prefWidth="210.0" text="Typing" />
-                <Button fx:id="memoryButton" layoutY="152.0" mnemonicParsing="false" onAction="#launchMemory" prefHeight="70.0" prefWidth="210.0" text="Memory" />
-                <Button fx:id="reactionButton" layoutY="76.0" mnemonicParsing="false" onAction="#launchReaction" prefHeight="70.0" prefWidth="210.0" text="Reaction" />
-            <Button layoutX="14.0" layoutY="369.0" mnemonicParsing="false" prefWidth="29.0" style="-fx-background-radius: 100;" text="𝓲">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            </children>
-        </AnchorPane>
+        <VBox alignment="TOP_CENTER" prefHeight="550.0" prefWidth="250.0" styleClass="left-sidebar">
+            <padding>
+                <Insets top="30.0" />
+            </padding>
+            <Label styleClass="sidebar-title" text="Mindash">
+                <VBox.margin>
+                    <Insets bottom="50.0" />
+                </VBox.margin>
+            </Label>
+            <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" styleClass="sidebar-button" text="Typing" />
+            <Button fx:id="reactionButton" mnemonicParsing="false" onAction="#launchReaction" styleClass="sidebar-button" text="Reaction" />
+            <Button fx:id="memoryButton" mnemonicParsing="false" onAction="#launchMemory" styleClass="sidebar-button" text="Memory" />
+        </VBox>
 
-              <!-- Right section containing name label, image, and description label -->
-        <AnchorPane layoutX="212.0" layoutY="50.0" prefHeight="440.0" prefWidth="531.0" style="-fx-background-color: #423645; -fx-background-radius: 10;">
-            <children>
-                <!-- Name label at the top -->
-                <Label fx:id="nameLabel" layoutX="27.0" layoutY="27.0" prefHeight="53.0" prefWidth="210.0" style="-fx-background-color: black; -fx-background-radius: 10;" text="Welcome To MinDash" textFill="#fffafa" wrapText="true">
-                    <font>
-                        <Font size="25.0" />
-                    </font>
-                </Label>
+        <StackPane HBox.hgrow="ALWAYS" prefHeight="550.0" prefWidth="650.0" styleClass="right-content-pane">
+            <Pane prefHeight="200.0" prefWidth="200.0" rotate="45.0" styleClass="top-right-bg" StackPane.alignment="TOP_RIGHT">
+                <StackPane.margin>
+                    <Insets right="-100.0" top="-100.0" />
+                </StackPane.margin>
+            </Pane>
 
-                      <!-- Image below the name label -->
-                <ImageView fx:id="imageView" fitHeight="171.0" fitWidth="210.0" layoutX="307.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" />
-
-                      <!-- Description label (this will be updated on hover) -->
-                <Label fx:id="descriptionLabel" layoutX="13.0" layoutY="274.0" prefHeight="124.0" prefWidth="505.0" text="Label" textFill="WHITE" visible="false">
-                    <font>
-                        <Font size="15.0" />
-                    </font>
-                </Label>
-            </children>
-        </AnchorPane>
-
-        <!-- Main title label -->
-        <Label layoutX="319.0" layoutY="7.0" prefHeight="38.0" prefWidth="103.0" text="MinDash" textFill="WHITE">
-            <font>
-                <Font name="Book Antiqua" size="25.0" />
-            </font>
-        </Label>
+            <VBox alignment="CENTER" spacing="30.0">
+                <Label fx:id="nameLabel" styleClass="content-title" text="Welcome to Mindash" />
+                <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" styleClass="content-image" />
+                <Label fx:id="descriptionLabel" alignment="CENTER" prefWidth="450.0" styleClass="content-description" text="Select a game from the menu to see its description and get started!" textFill="WHITE" wrapText="true" />
+            </VBox>
+        </StackPane>
     </children>
-   <stylesheets>
-      <URL value="@../../../Main_menu.css" />
-      <URL value="@../../../Main_menu.css" />
-   </stylesheets>
-</AnchorPane>
+</HBox>

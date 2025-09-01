@@ -1,11 +1,11 @@
 /* Root background */
 #parentPane {
-    -fx-background-color: #211A2B;
+    -fx-background-color: #2D213F; /* Dark purple */
 }
 
 /* Section: Board container */
 #boardPane {
-    -fx-background-color: #000000;
+    -fx-background-color: #251A36; /* A slightly lighter purple for the board */
 }
 
 /* Title */
@@ -22,7 +22,7 @@
 
 /* Grid area look */
 .pattern-grid {
-    -fx-background-color: #141414;
+    -fx-background-color: #3B264F;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
     -fx-border-color: rgba(255,255,255,0.08);
@@ -32,13 +32,13 @@
 
 /* Submit button (pill) */
 .pill-btn {
-    -fx-background-color: linear-gradient(to bottom, #2d2a36, #1e1a27);
+    -fx-background-color: linear-gradient(to bottom, #4A2B63, #3B264F);
     -fx-text-fill: #E6EDF3;
     -fx-font-size: 18px;
     -fx-font-family: "Dubai Medium";
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: #847E8C;
+    -fx-border-color: #9053A3;
     -fx-border-width: 1;
     -fx-cursor: hand;
     -fx-padding: 10 18;
@@ -47,13 +47,13 @@
 
 .pill-btn:hover {
     /* subtle shine/glow on hover */
-    -fx-effect: dropshadow(gaussian, rgba(140,120,255,0.85), 16, 0.35, 0, 0);
-    -fx-background-color: linear-gradient(to bottom, #3a3650, #272238);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.85), 16, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(to bottom, #FF527C, #C53051);
 }
 
 .pill-btn:pressed {
     -fx-translate-y: 1;
-    -fx-background-color: linear-gradient(to bottom, #211e2b, #191624);
+    -fx-background-color: linear-gradient(to bottom, #C53051, #A02844);
 }
 
 /* Back icon button */
@@ -74,14 +74,13 @@
 
 /* Nicer card-like label */
 #gameOverLabel {
-    -fx-text-fill: linear-gradient(#F5E6FF, #FFFFFF);
+    -fx-text-fill: linear-gradient(#FFD1E0, #FFFFFF);
     -fx-font-size: 44px;
     -fx-font-weight: 900;
     -fx-padding: 16 28;
-    -fx-background-color: rgba(35, 29, 56, 0.90);
+    -fx-background-color: rgba(69, 42, 95, 0.90);
     -fx-background-radius: 18;
-    -fx-effect: dropshadow(gaussian, rgba(158,140,255,0.45), 28, 0.35, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.45), 28, 0.35, 0, 0);
     -fx-alignment: center;
     -fx-text-alignment: center;
 }
-

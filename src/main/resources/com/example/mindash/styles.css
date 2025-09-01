@@ -2,16 +2,16 @@
 .root {
     -fx-font-size: 16px;
     -fx-font-family: "Inter", "Segoe UI", Arial, sans-serif;
-    -fx-background-color: #1b1b1c; /* Very dark charcoal background */
+    -fx-background-color: #2D213F; /* Dark purple background */
 }
 
 /* --- Main Typing Checker Window (typing-checker.fxml) Styles --- */
 .main-vbox {
-    -fx-background-color: #1a1a1a; /* Slightly lighter charcoal background for the main window */
+    -fx-background-color: #251A36; /* Slightly lighter purple for the main window */
     -fx-padding: 30px;
     -fx-spacing: 10px;
     -fx-alignment: center;
-    -fx-border-color: #333333;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 12px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
@@ -28,7 +28,7 @@
     -fx-alignment: center;
     -fx-spacing: 15px;
     -fx-padding: 10px;
-    -fx-background-color: #282828; /* Darker background for settings */
+    -fx-background-color: #3B264F; /* Darker background for settings */
     -fx-border-radius: 8px;
 }
 
@@ -40,8 +40,8 @@
 .duration-spinner .text-field {
     -fx-font-size: 16px;
     -fx-prompt-text-fill: #757575;
-    -fx-background-color: #1a1a1a;
-    -fx-border-color: #333333;
+    -fx-background-color: #251A36;
+    -fx-border-color: #4A2B63;
     -fx-border-radius: 6px;
     -fx-padding: 8px;
     -fx-text-fill: #f5f5f5;
@@ -49,31 +49,31 @@
 
 .duration-spinner .increment-button,
 .duration-spinner .decrement-button {
-    -fx-background-color: #6366f1;
+    -fx-background-color: #FF527C; /* Pink/Red accent */
     -fx-background-radius: 6px;
 }
 
 .duration-spinner .increment-button:hover,
 .duration-spinner .decrement-button:hover {
-    -fx-background-color: #4f46e5;
+    -fx-background-color: #C53051; /* Darker Pink/Red accent */
 }
 
 .time-label-main {
     -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #34d399; /* Greenish for active time, good contrast on dark bg */
+    -fx-text-fill: #9053A3; /* A complementary purple color */
 }
 
 .countdown-label {
     -fx-font-size: 28px;
     -fx-font-weight: bolder;
-    -fx-text-fill: #f87171; /* A brighter red for contrast */
+    -fx-text-fill: #FF527C; /* A brighter red for contrast */
 }
 
 .prompt-text-flow {
-    -fx-background-color: #1a1a1a; /* Updated to match main background */
+    -fx-background-color: #251A36; /* Updated to match main background */
     -fx-padding: 20px;
-    -fx-border-color: #333333;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-font-size: 20px;
@@ -84,8 +84,8 @@
 }
 
 .current-word-highlight {
-    -fx-fill: #f5f5f5; /* Changed text to white */
-    -fx-background-color: #fde047; /* Bright yellow, good contrast */
+    -fx-fill: #f5f5f5;
+    -fx-background-color: #FFD1E0; /* A light pink, good contrast */
     -fx-padding: 3px 6px;
     -fx-background-radius: 4px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
@@ -93,26 +93,26 @@
 
 .input-text-area {
     -fx-font-size: 20px;
-    -fx-prompt-text-fill: #a1a1a1; /* Lighter prompt text */
-    -fx-background-color: #282828; /* Made dark gray for contrast */
-    -fx-border-color: #1a1a1a; /* Lighter border for visibility */
+    -fx-prompt-text-fill: #a1a1a1;
+    -fx-background-color: #3B264F; /* Made dark purple for contrast */
+    -fx-border-color: #251A36;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-padding: 15px;
     -fx-text-fill: #f5f5f5;
     -fx-pref-height: 180.0;
-    -fx-control-inner-background: #1a1a1a;
+    -fx-control-inner-background: #251A36;
 }
 
 .input-text-area:focused {
-    -fx-border-color: #6366f1;
-    -fx-effect: innershadow(gaussian, rgba(99, 102, 241, 0.4), 5, 0, 0, 2);
+    -fx-border-color: #FF527C; /* Pink/Red accent */
+    -fx-effect: innershadow(gaussian, rgba(255, 82, 124, 0.4), 5, 0, 0, 2);
 }
 
 .current-result-label {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4ade80; /* Brighter green for results */
+    -fx-text-fill: #FF809B; /* Brighter pink for results */
     -fx-padding: 10px 0;
 }
 
@@ -133,34 +133,34 @@
 }
 
 .start-stop-button {
-    -fx-background-color: #10b981;
+    -fx-background-color: #FF527C; /* Pink/Red accent */
 }
 .start-stop-button:hover {
-    -fx-background-color: #059669;
+    -fx-background-color: #C53051; /* Darker Pink/Red accent */
 }
 
 .custom-text-button {
-    -fx-background-color: #3b82f6;
+    -fx-background-color: #9053A3; /* Complementary purple */
 }
 .custom-text-button:hover {
-    -fx-background-color: #2563eb;
+    -fx-background-color: #724186;
 }
 
 .pause-resume-button {
-    -fx-background-color: #f59e0b;
-    -fx-text-fill: #1e293b; /* Dark text for contrast */
+    -fx-background-color: #FFD1E0; /* Light pink */
+    -fx-text-fill: #251A36; /* Dark text for contrast */
 }
 .pause-resume-button:hover {
-    -fx-background-color: #d97706;
+    -fx-background-color: #FFC0D0;
 }
 
 /* --- Results Window (results-view.fxml) Styles --- */
 .results-vbox {
-    -fx-background-color: #1a1a1a;
+    -fx-background-color: #251A36;
     -fx-padding: 30px;
     -fx-spacing: 25px;
     -fx-alignment: center;
-    -fx-border-color: #333333;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 12px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
@@ -177,9 +177,9 @@
     -fx-alignment: center;
     -fx-spacing: 8px;
     -fx-padding: 15px;
-    -fx-background-color: #282828;
+    -fx-background-color: #3B264F;
     -fx-border-radius: 10px;
-    -fx-border-color: #333333;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
     -fx-max-width: 450px;
@@ -188,7 +188,7 @@
 .result-metric-label {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4ade80;
+    -fx-text-fill: #FF809B;
 }
 
 .result-comparison-label {
@@ -197,13 +197,13 @@
 }
 
 .results-progress-bar .track {
-    -fx-background-color: #333333;
+    -fx-background-color: #4A2B63;
     -fx-background-radius: 5px;
     -fx-padding: 2px;
 }
 
 .results-progress-bar .bar {
-    -fx-background-color: linear-gradient(to right, #10b981, #34d399);
+    -fx-background-color: linear-gradient(to right, #FF527C, #9053A3);
     -fx-background-radius: 5px;
     -fx-background-insets: 0;
 }
@@ -211,7 +211,7 @@
 .result-error-label {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f87171;
+    -fx-text-fill: #FF527C;
 }
 
 .result-backspace-label {
@@ -221,8 +221,8 @@
 
 .wpm-chart {
     -fx-padding: 10px;
-    -fx-background-color: #1a1a1a;
-    -fx-border-color: #333333;
+    -fx-background-color: #251A36;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
@@ -241,19 +241,19 @@
 }
 
 .chart-series-line {
-    -fx-stroke: #6366f1;
+    -fx-stroke: #FF527C;
     -fx-stroke-width: 2.5px;
-    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.5), 8, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(255, 82, 124, 0.5), 8, 0, 0, 0);
 }
 
 .chart-line-symbol {
-    -fx-background-color: #6366f1, white;
+    -fx-background-color: #FF527C, white;
     -fx-background-radius: 5px;
     -fx-padding: 5px;
 }
 
 .close-button {
-    -fx-background-color: #f87171;
+    -fx-background-color: #C53051;
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-padding: 12px 25px;
@@ -263,16 +263,16 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
 }
 .close-button:hover {
-    -fx-background-color: #ef4444;
+    -fx-background-color: #A02844;
 }
 
 /* --- Custom Text Input Window (custom-text-view.fxml) Styles --- */
 .custom-text-vbox {
-    -fx-background-color: #1a1a1a;
+    -fx-background-color: #251A36;
     -fx-padding: 30px;
     -fx-spacing: 20px;
     -fx-alignment: center;
-    -fx-border-color: #333333;
+    -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 12px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
@@ -287,20 +287,20 @@
 
 .custom-text-input-area {
     -fx-font-size: 20px;
-    -fx-prompt-text-fill: #a1a1a1; /* Lighter prompt text */
-    -fx-background-color: #282828; /* Made dark gray for contrast */
-    -fx-border-color: #1a1a1a; /* Lighter border for visibility */
+    -fx-prompt-text-fill: #a1a1a1;
+    -fx-background-color: #3B264F;
+    -fx-border-color: #251A36;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
     -fx-padding: 15px;
     -fx-text-fill: #f5f5f5;
     -fx-pref-height: 180.0;
-    -fx-control-inner-background: #1a1a1a;
+    -fx-control-inner-background: #251A36;
 }
 
 .custom-text-input-area:focused {
-    -fx-border-color: #6366f1;
-    -fx-effect: innershadow(gaussian, rgba(99, 102, 241, 0.4), 5, 0, 0, 2);
+    -fx-border-color: #FF527C;
+    -fx-effect: innershadow(gaussian, rgba(255, 82, 124, 0.4), 5, 0, 0, 2);
 }
 
 .custom-text-buttons-hbox {
@@ -320,30 +320,31 @@
 }
 
 .custom-text-apply-button {
-    -fx-background-color: #10b981;
+    -fx-background-color: #FF527C;
 }
 .custom-text-apply-button:hover {
-    -fx-background-color: #059669;
+    -fx-background-color: #C53051;
 }
 
 .custom-text-clear-button {
-    -fx-background-color: #f59e0b;
+    -fx-background-color: #FFD1E0;
+    -fx-text-fill: #251A36;
 }
 .custom-text-clear-button:hover {
-    -fx-background-color: #d97706;
+    -fx-background-color: #FFC0D0;
 }
 
 .custom-text-cancel-button {
-    -fx-background-color: #64748b;
+    -fx-background-color: #9053A3;
 }
 .custom-text-cancel-button:hover {
-    -fx-background-color: #475569;
+    -fx-background-color: #724186;
 }
 
 /* --- General / Disabled States --- */
 .text-area:disabled, .button:disabled, .spinner:disabled {
     -fx-opacity: 0.6;
-    -fx-background-color: #475569;
+    -fx-background-color: #4A2B63;
     -fx-effect: none;
     -fx-cursor: default;
 }
