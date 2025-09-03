@@ -122,8 +122,8 @@ public class Mem_PatternRecallController {
             int minCells = Math.max(2, (int) Math.ceil(0.20 * total));
             int maxCells = Math.max(minCells, (int) Math.floor(0.60 * total));
 
-            double muP = 0.35;
-            double sdP = 0.12;
+            double muP = 0.40;
+            double sdP = 0.35;
 
             int patternSize;
             while (true) {
@@ -236,8 +236,8 @@ public class Mem_PatternRecallController {
 
     private void showTextGoBack(String message) {
         gameOverLabel.setText(message);
-//        gameOverlay.setVisible(true);
-//        gameOverlay.setManaged(true);
+        gameOverlay.setVisible(true);
+        gameOverlay.setManaged(true);
         submitButton.setDisable(true);
         disableAllCells(true);
 

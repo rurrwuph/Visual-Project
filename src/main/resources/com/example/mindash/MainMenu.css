@@ -23,8 +23,9 @@
     -fx-padding: 0 0 30px 0;
 }
 
+/* ---- Sidebar Button Styling ---- */
 .sidebar-button {
-    -fx-background-color: transparent;
+    -fx-background-color: transparent; /* No default background color */
     -fx-text-fill: #E0E0E0;
     -fx-font-family: "Segoe UI", "Book Antiqua";
     -fx-font-size: 18px;
@@ -39,24 +40,18 @@
     -fx-transition: background-color 0.2s, text-fill 0.2s, -fx-font-weight 0.2s;
 }
 
+/* Hover effect: Background color changes on hover */
 .sidebar-button:hover {
+    -fx-background-color: #FF527C; /* Bright pink on hover */
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
 }
 
-/* Active/Selected Button */
-.sidebar-button.active {
-    -fx-background-color: #FF527C; /* Bright red/pink accent */
+/* Active (clicked) button styling: Background color changes on click */
+.sidebar-button:pressed {
+    -fx-background-color: #FF3F6B; /* Slightly darker pink when pressed */
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
-    -fx-background-radius: 10;
-}
-
-.sidebar-button:focused {
-     -fx-background-color: #FF527C;
-    -fx-text-fill: #FFFFFF;
-    -fx-font-weight: bold;
-    -fx-background-radius: 10;
 }
 
 /* ---- Right Content Pane ---- */

@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class MainMenu_Controller {
     @FXML private Label descriptionLabel;
     @FXML private Label nameLabel;
     @FXML private ImageView imageView;
+    @FXML private HBox parentBox;
 
     private Button currentActiveButton;
 
@@ -42,7 +44,7 @@ public class MainMenu_Controller {
 
         gameData.put("reaction", new GameInfo("Reaction Challenge",
                 "A great way to improve your reaction time and coordination. Respond to on-screen cues at your own pace, helping to rebuild your reflexes and focus during rehabilitation.",
-                "lightning.png"));
+                "react_reaction_time_image.png"));
 
         // Setup button hover effects, without overwriting onAction
         setupButtonHover(typingButton, "typing");
@@ -94,10 +96,7 @@ public class MainMenu_Controller {
         }
     }
 
-    //
     // Launching the games
-    // The onAction from FXML will call these methods.
-    //
 
     @FXML
     private void launchTyping(ActionEvent event) {
@@ -108,7 +107,17 @@ public class MainMenu_Controller {
     @FXML
     private void launchMemory(ActionEvent event) {
         setActiveButton(memoryButton);
-        switchScene("MemGame.fxml", event);
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MemGame.fxml"));
+            Parent root = loader.load();
+
+
+            Stage stage = (Stage) parentBox.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML

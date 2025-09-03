@@ -1,31 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-background-color: #0a0a0a;" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_MenuController">
+<BorderPane prefHeight="636.0" prefWidth="430.0" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_MenuController">
     <center>
-        <VBox alignment="CENTER" spacing="50">
+        <VBox alignment="CENTER" prefHeight="366.0" prefWidth="300.0" spacing="50">
             <!-- Image for the title -->
             <ImageView fitHeight="300" fitWidth="600" preserveRatio="true">
                 <Image url="@react_reaction_time_image.png" />
+                <effect>
+                    <Blend mode="DARKEN" />
+                </effect>
             </ImageView>
 
             <!-- Buttons -->
             <VBox alignment="CENTER" spacing="15">
-                <Button onAction="#startTest1" style="-fx-background-color: #1a1a1a; -fx-text-fill: white; -fx-font-size: 16; -fx-pref-width: 250; -fx-pref-height: 50;" text="Test 1: Grid Reaction">
-                </Button>
-
-                <Button onAction="#startTest2" style="-fx-background-color: #1a1a1a; -fx-text-fill: white; -fx-font-size: 16; -fx-pref-width: 250; -fx-pref-height: 50;" text="Test 2: Falling Balls">
-                </Button>
+                <Button onAction="#startTest1" styleClass="styled-button" text="Test 1: Grid Reaction" />
+                <Button onAction="#startTest2" styleClass="styled-button" text="Test 2: Falling Balls" />
             </VBox>
         </VBox>
     </center>
-    <padding>
-        <Insets bottom="80" left="40" right="40" top="80" />
-    </padding>
 </BorderPane>
