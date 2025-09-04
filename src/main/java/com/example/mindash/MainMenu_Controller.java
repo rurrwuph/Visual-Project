@@ -40,11 +40,11 @@ public class MainMenu_Controller {
 
         gameData.put("memory", new GameInfo("Memory Challenge",
                 "A simple and enjoyable game to strengthen your memory. Watch and remember sequences of words, patterns, or match pairs of words, providing a rewarding mental workout.",
-                "love-always-wins.png"));
+                "memory_icon.png"));
 
         gameData.put("reaction", new GameInfo("Reaction Challenge",
                 "A great way to improve your reaction time and coordination. Respond to on-screen cues at your own pace, helping to rebuild your reflexes and focus during rehabilitation.",
-                "react_reaction_time_image.png"));
+                "react_reaction_time_image_1.png"));
 
         // setup button hover effects, without overwriting onAction
         setupButtonHover(typingButton, "typing");
