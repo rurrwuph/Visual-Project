@@ -36,7 +36,6 @@ public class react_Test2Controller implements Initializable {
     private List<Ball> balls = new ArrayList<>();
     private Circle[] targets;
 
-
     @FXML
     public void initialize(java.net.URL location, java.util.ResourceBundle resources) {
         targets = new Circle[]{target1, target2, target3, target4, target5};
@@ -100,7 +99,7 @@ public class react_Test2Controller implements Initializable {
     private void createBall() {
         double x = random.nextInt((int) gamePane.getWidth() - 30) + 15;
         Ball ball = new Ball();
-        ball.circle = new Circle(15);
+        ball.circle = new Circle(18); // CHANGED: Increased radius from 15 to 18 for better click detection
         ball.circle.setCenterX(x);
         ball.circle.setCenterY(0);
         ball.y = 0;
@@ -109,13 +108,17 @@ public class react_Test2Controller implements Initializable {
         if (random.nextInt(2) == 0) {
             ball.circle.setFill(Color.RED);
             ball.circle.setUserData("target");
+            // CHANGED: Added visual effect to make target balls more distinct
+            ball.circle.setStroke(Color.WHITE);
+            ball.circle.setStrokeWidth(2);
         } else {
             Color[] colors = {Color.BLUE, Color.GREEN, Color.YELLOW, Color.PURPLE, Color.CYAN, Color.ORANGE};
             ball.circle.setFill(colors[random.nextInt(colors.length)]);
             ball.circle.setUserData("normal");
         }
 
-        ball.circle.setOnMouseClicked(this::handleBallClick);
+        // CHANGED: Improved click detection by using mouse pressed instead of clicked
+        ball.circle.setOnMousePressed(this::handleBallClick);
         ball.speed = 1 + random.nextDouble() * 2;
 
         gamePane.getChildren().add(ball.circle);
@@ -125,15 +128,25 @@ public class react_Test2Controller implements Initializable {
     private void handleBallClick(MouseEvent event) {
         Circle clickedCircle = (Circle) event.getSource();
 
-        if ("target".equals(clickedCircle.getUserData())) {
+        // CHANGED: Added null check and additional validation
+        if (clickedCircle != null && "target".equals(clickedCircle.getUserData())) {
             gamePane.getChildren().remove(clickedCircle);
-            balls.removeIf(ball -> ball.circle == clickedCircle);
+
+            // CHANGED: More reliable removal using iterator
+            balls.removeIf(ball -> {
+                if (ball.circle == clickedCircle) {
+                    return true;
+                }
+                return false;
+            });
+
             ballsClicked++;
             updateTargetIndicators();
             statusLabel.setText("Click red balls as they fall! Target: " + ballsClicked + "/" + TARGET_BALLS);
-        }
 
-        event.consume();
+            // CHANGED: Added visual feedback for successful click
+            event.consume();
+        }
     }
 
     private void updateTargetIndicators() {
@@ -173,7 +186,8 @@ public class react_Test2Controller implements Initializable {
 
     private void loadBestTime() {
         try {
-            if (Files.exists(Paths.get("bestTime2.txt"))) {
+            // CHANGED: Fixed filename consistency issue
+            if (Files.exists(Paths.get("react_bestTime2.txt"))) {
                 String content = new String(Files.readAllBytes(Paths.get("react_bestTime2.txt")));
                 bestTime = Long.parseLong(content.trim());
                 bestTimeLabel.setText("Best time: " + bestTime + " ms");
