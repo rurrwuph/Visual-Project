@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class react_MenuController {
+    //grid reaction
     @FXML
     private void startTest1(ActionEvent event) {
         try {
@@ -22,7 +23,7 @@ public class react_MenuController {
             e.printStackTrace();
         }
     }
-
+    //falling balls
     @FXML
     private void startTest2(ActionEvent event) {
         try {
