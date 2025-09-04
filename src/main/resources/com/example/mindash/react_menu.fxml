@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane prefHeight="636.0" prefWidth="430.0" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_MenuController">
-    <center>
-        <VBox alignment="CENTER" prefHeight="366.0" prefWidth="300.0" spacing="50">
+   <top>
+        <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="770.0" spacing="50" BorderPane.alignment="CENTER">
             <!-- Image for the title -->
-            <ImageView fitHeight="300" fitWidth="600" preserveRatio="true">
+            <ImageView fitHeight="390.0" fitWidth="326.0" preserveRatio="true">
                 <Image url="@react_reaction_time_image.png" />
             <effect>
                <Blend mode="DARKEN" />
@@ -19,10 +19,10 @@
             </ImageView>
 
             <!-- Buttons -->
-            <VBox alignment="CENTER" spacing="15">
-                <Button onAction="#startTest1" styleClass="styled-button" text="Test 1: Grid Reaction" />
-                <Button onAction="#startTest2" styleClass="styled-button" text="Test 2: Falling Balls" />
+            <VBox alignment="CENTER" prefHeight="188.0" prefWidth="770.0" spacing="15">
+                <Button onAction="#startTest1" prefHeight="66.0" prefWidth="266.0" styleClass="styled-button" text="Test 1: Grid Reaction" />
+                <Button onAction="#startTest2" prefHeight="58.0" prefWidth="260.0" styleClass="styled-button" text="Test 2: Falling Balls" />
             </VBox>
         </VBox>
-    </center>
+   </top>
 </BorderPane>

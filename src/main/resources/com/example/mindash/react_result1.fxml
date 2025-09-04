@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane style="-fx-background-color: #2b2b2b;" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_Result1Controller">
+<BorderPane prefHeight="534.0" prefWidth="534.0" style="-fx-background-color: #2b2b2b;" stylesheets="@react_dark-theme.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.react_Result1Controller">
     <center>
-        <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #3a3a3a; -fx-padding: 30; -fx-background-radius: 10;">
-            <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="Test 1 Results" />
+        <VBox alignment="CENTER" prefHeight="554.0" prefWidth="566.0" spacing="20" style="-fx-background-color: #3a3a3a; -fx-padding: 30; -fx-background-radius: 10;">
+            <Label prefHeight="105.0" prefWidth="222.0" style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="      Test 1 Result" />
 
             <VBox alignment="CENTER_LEFT" spacing="10">
                 <Label fx:id="currentTimeLabel" style="-fx-text-fill: #00ffcc; -fx-font-size: 18px;" />
@@ -17,8 +17,8 @@
                 <Label fx:id="comparisonLabel" style="-fx-text-fill: white; -fx-font-size: 16px;" />
             </VBox>
 
-            <Button onAction="#playAgain" style="-fx-background-color: #00ffcc; -fx-text-fill: #2b2b2b; -fx-font-size: 16px; -fx-pref-width: 150; -fx-pref-height: 40;" text="Play Again" />
-            <Button onAction="#backToMenu" style="-fx-background-color: #ff3366; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 150; -fx-pref-height: 40;" text="Back to Menu" />
+            <Button onAction="#playAgain" prefHeight="91.0" prefWidth="152.0" style="-fx-background-color: #00ffcc; -fx-text-fill: #2b2b2b; -fx-font-size: 16px; -fx-pref-width: 150; -fx-pref-height: 40;" text="Play Again" />
+            <Button onAction="#backToMenu" prefHeight="115.0" prefWidth="215.0" style="-fx-background-color: #ff3366; -fx-text-fill: white; -fx-font-size: 16px; -fx-pref-width: 150; -fx-pref-height: 40;" text="Back to Menu" />
         </VBox>
     </center>
     <padding>

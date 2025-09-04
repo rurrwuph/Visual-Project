@@ -28,9 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+public class react_Test1Controller implements Initializable {
 
-
-public class react_Test1Controller  implements Initializable {
+    // Initial setup and UI bindings for the test screen
     @FXML
     private GridPane gridPane;
     @FXML private Label statusLabel;
@@ -46,9 +46,10 @@ public class react_Test1Controller  implements Initializable {
     private Random random = new Random();
     private long bestTime = Long.MAX_VALUE;
 
-    private static final String RESOURCE_NAME = "react_bestTime1.txt"; // placed under src/main/resources
+    private static final String RESOURCE_NAME = "react_bestTime1.txt";
     private static final Path USER_SAVE = Paths.get(System.getProperty("user.home"), ".reaction-time", RESOURCE_NAME);
 
+    // Initialize the controller, load best time, and start the test sequence
     @FXML
     public void initialize(URL location, java.util.ResourceBundle resources) {
         loadBestTime();
@@ -56,6 +57,7 @@ public class react_Test1Controller  implements Initializable {
         startNextTest();
     }
 
+    // Creates and populates the 12x12 grid with rectangles that the user clicks
     private void initializeGrid() {
         gridPane.getChildren().clear();
         for (int row = 0; row < GRID_SIZE; row++) {
@@ -72,6 +74,7 @@ public class react_Test1Controller  implements Initializable {
         }
     }
 
+    // Starts the next reaction test, showing a random green box to click
     private void startNextTest() {
         if (currentTest >= TOTAL_TESTS) {
             showResults();
@@ -82,14 +85,14 @@ public class react_Test1Controller  implements Initializable {
         progressLabel.setText(currentTest + "/" + TOTAL_TESTS);
         statusLabel.setText("Get ready for test " + (currentTest + 1) + " of " + TOTAL_TESTS);
 
-        // Reset all cells to default color
+        // Reset grid color before showing the green box
         for (javafx.scene.Node node : gridPane.getChildren()) {
             if (node instanceof Rectangle) {
                 ((Rectangle) node).setFill(Color.rgb(60, 60, 60));
             }
         }
 
-        // Random delay before showing green box (3-5 seconds)
+        // Set a random delay before displaying the green box
         int delay = 3000 + random.nextInt(2000);
         PauseTransition pause = new PauseTransition(Duration.millis(delay));
         pause.setOnFinished(e -> {
@@ -106,6 +109,7 @@ public class react_Test1Controller  implements Initializable {
         pause.play();
     }
 
+    // Handles grid cell clicks, checking if the green box was clicked and calculating reaction time
     private void handleGridClick(MouseEvent event) {
         Rectangle clickedRect = (Rectangle) event.getSource();
 
@@ -117,17 +121,18 @@ public class react_Test1Controller  implements Initializable {
             clickedRect.setFill(Color.rgb(60, 60, 60));
             statusLabel.setText("Reaction time: " + reactionTime + " ms");
 
-            // Update progress
+            // Update progress bar and label
             progressBar.setProgress((double) currentTest / TOTAL_TESTS);
             progressLabel.setText(currentTest + "/" + TOTAL_TESTS);
 
-            // Brief pause before next test
+            // Brief pause before starting next test
             PauseTransition pause = new PauseTransition(Duration.millis(1500));
             pause.setOnFinished(e -> startNextTest());
             pause.play();
         }
     }
 
+    // Finds the rectangle at a given grid position
     private Rectangle getRectangleAt(int col, int row) {
         for (javafx.scene.Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
@@ -137,6 +142,7 @@ public class react_Test1Controller  implements Initializable {
         return null;
     }
 
+    // Displays the results at the end of all tests
     private void showResults() {
         long total = 0;
         for (long time : reactionTimes) {
@@ -144,7 +150,7 @@ public class react_Test1Controller  implements Initializable {
         }
         long average = total / TOTAL_TESTS;
 
-        // Compare with best time
+        // Check if there's a new best time
         boolean newBest = false;
         if (average < bestTime) {
             newBest = true;
@@ -152,13 +158,13 @@ public class react_Test1Controller  implements Initializable {
         }
 
         try {
-            // Load the result screen
+            // Load and display the results screen
             FXMLLoader loader = new FXMLLoader(getClass().getResource("react_result1.fxml"));
             Parent root = loader.load();
             react_Result1Controller controller = loader.getController();
             controller.setResults(average, bestTime);
 
-            // Switch to the result screen
+            // Switch to the results screen
             Stage stage = (Stage) gridPane.getScene().getWindow();
             stage.setScene(new Scene(root));
         } catch (IOException e) {
@@ -166,16 +172,15 @@ public class react_Test1Controller  implements Initializable {
         }
     }
 
+    // Loads the best time from the saved file or bundled resource
     private void loadBestTime() {
         try {
             Long value = null;
 
-            // 1) Prefer user save file if present
             if (Files.exists(USER_SAVE)) {
                 String content = Files.readString(USER_SAVE, StandardCharsets.UTF_8).trim();
                 if (!content.isEmpty()) value = Long.parseLong(content);
             } else {
-                // 2) Fall back to bundled resource on the classpath
                 try (InputStream in = getClass().getResourceAsStream("/" + RESOURCE_NAME)) {
                     if (in != null) {
                         String content = new String(in.readAllBytes(), StandardCharsets.UTF_8).trim();
@@ -197,28 +202,22 @@ public class react_Test1Controller  implements Initializable {
         }
     }
 
+    // Saves the best time to a user-writable location and updates UI
     private void saveBestTime(long time) {
         try {
-            // Save to a user-writable location
             Files.createDirectories(USER_SAVE.getParent());
             Files.writeString(USER_SAVE, String.valueOf(time), StandardCharsets.UTF_8);
             bestTime = time;
             bestTimeLabel.setText("Best time: " + bestTime + " ms");
 
-
-
             try {
                 URL url = getClass().getResource("/" + RESOURCE_NAME);
                 if (url != null && "file".equalsIgnoreCase(url.getProtocol())) {
                     Path resPath = Paths.get(url.toURI());
-                    // resPath typically points to target/classes/bestTime1.txt during IDE runs
                     Files.writeString(resPath, String.valueOf(time), StandardCharsets.UTF_8);
                 }
             } catch (URISyntaxException ignore) {
-                // Ignore if we can't resolve a writable resource path (e.g., running from a JAR)
             }
-            // --- end optional ---
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,13 +18,16 @@ public class react_Result1Controller {
     private long currentTime;
     private long bestTime;
 
+    // Set the current and best times and update the UI accordingly
     public void setResults(long currentTime, long bestTime) {
         this.setCurrentTime(currentTime);
         this.setBestTime(bestTime);
 
+        // Update the UI labels to show the current and best times
         currentTimeLabel.setText("Your average time: " + currentTime + " ms");
         bestTimeLabel.setText("Best time: " + bestTime + " ms");
 
+        // Compare the current time with the best time and update the comparison label
         if (currentTime < bestTime) {
             comparisonLabel.setText("Congratulations! You improved by " + (bestTime - currentTime) + " ms!");
         } else if (currentTime == bestTime) {
@@ -34,23 +37,26 @@ public class react_Result1Controller {
         }
     }
 
+    // Restart the game by loading the test screen again
     @FXML
     private void playAgain() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("react_test1.fxml"));
             Stage stage = (Stage) currentTimeLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(root));  // Change the scene to the test screen
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Close the current window and return to the menu
     @FXML
     private void backToMenu() {
         Stage stage = (Stage) currentTimeLabel.getScene().getWindow();
-        stage.close();
+        stage.close();  // Close the current stage (game window)
     }
 
+    // Getter and setter methods for the current and best times
     public long getCurrentTime() {
         return currentTime;
     }
