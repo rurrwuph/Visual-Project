@@ -93,7 +93,7 @@ public class react_Test1Controller implements Initializable {
         }
 
         // Set a random delay before displaying the green box
-        int delay = 3000 + random.nextInt(2000);
+        int delay = 1500 + random.nextInt(2000);
         PauseTransition pause = new PauseTransition(Duration.millis(delay));
         pause.setOnFinished(e -> {
             int targetRow = random.nextInt(GRID_SIZE);
