@@ -187,12 +187,47 @@
 .start-stop-button:hover {
     -fx-background-color: #2D4576; /* Darker blue accent */
 }
+.pause-resume-button{
+    -fx-background-color: #3A578D; /* Blue accent */
+    -fx-font-size: 16px;
+    -fx-padding: 12px 25px;
+    -fx-text-fill: white;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
+}
+
+.pause-resume-button:hover {
+    -fx-background-color: #2D4576; /* Darker blue accent */
+}
+
+
 
 .custom-text-button {
-    -fx-background-color: #3A578D; /* Blue accent */
+        -fx-background-color: #3A578D; /* Blue accent */
+        -fx-font-size: 16px;
+        -fx-padding: 12px 25px;
+        -fx-text-fill: white;
+        -fx-border-radius: 8px;
+        -fx-background-radius: 8px;
+        -fx-cursor: hand;
+        -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
 }
 .custom-text-button:hover {
-    -fx-background-color: #2D4576;
+    -fx-background-color: #2D4576; /* Darker blue accent */
+}
+.custom-text-input-area{
+    -fx-font-size: 20px;
+    -fx-prompt-text-fill: #f5f5f5; /* Light text for input fields */
+    -fx-background-color: #3B264F; /* Dark purple for contrast */
+    -fx-border-color: #251A36;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-padding: 15px;
+    -fx-text-fill: #f5f5f5;
+    -fx-pref-height: 180.0;
+    -fx-control-inner-background: #251A36;
 }
 
 /* Results Window Styling */
@@ -303,4 +338,35 @@
     -fx-background-color: #4A2B63;
     -fx-effect: none;
     -fx-cursor: default;
+}
+.countdown-label{
+    -fx-font-size: 30px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: #AF2627 /* A brighter red for contrast */
+}
+
+.duration-spinner{
+    -fx-control-inner-background: #251A36;
+}
+
+.time-label-main{
+    -fx-font-size: 22px;
+    -fx-font-weight: bolder;
+    -fx-text-fill: #3951A1; /* A brighter red for contrast */
+}
+
+.current-word-highlight {
+    -fx-font-size: 23px;
+    -fx-fill: Black;
+    -fx-background-color: #FFD1E0; /* A light pink, good contrast */
+    -fx-padding: 3px 6px;
+    -fx-background-radius: 4px;
+}
+
+.duration-spinner .increment-arrow-button, .duration-spinner .decrement-arrow-button {
+    -fx-control-inner-background: #251A36;
+}
+
+.current-result-label{
+    -fx-font-size: 20px;
 }
