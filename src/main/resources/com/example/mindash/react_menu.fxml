@@ -13,9 +13,9 @@
             <!-- Image for the title -->
             <ImageView fitHeight="300" fitWidth="600" preserveRatio="true">
                 <Image url="@react_reaction_time_image.png" />
-                <effect>
-                    <Blend mode="DARKEN" />
-                </effect>
+            <effect>
+               <Blend mode="DARKEN" />
+            </effect>
             </ImageView>
 
             <!-- Buttons -->

@@ -1,27 +1,28 @@
 /* ========== Scene / Containers ========== */
 .root {
-    -fx-background-color: #2D213F; /* Dark purple/indigo */
+    -fx-background-color: #1F1F1F; /* Dark gray background for root */
     -fx-font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 20, 0, 0, 0); /* Subtle shadow around the root */
 }
 
-/* inner play area */
+/* Inner pane with glass effect */
 #rootPane {
-    -fx-background-color: #251A36;           /* A slightly lighter purple */
+    -fx-background-color: rgba(58, 50, 75, 0.8); /* Darkened transparent background for glass effect */
     -fx-background-radius: 18;
     -fx-border-radius: 18;
     -fx-border-color: rgba(255,255,255,0.08);
     -fx-border-width: 1;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 24, 0.25, 0, 10);
     -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.45), 24, 0.25, 0, 10); /* Subtle shadow for depth */
 }
 
-/* overlay that blocks input */
+/* Overlay for the dimming effect */
 #overlay {
-    -fx-background-color: rgba(0,0,0,0.55);
-    -fx-alignment: center; /* center overlay message */
+    -fx-background-color: rgba(0,0,0,0.55); /* Dark transparent overlay */
+    -fx-alignment: center;
 }
 
-/* overlay label text */
+/* Overlay message text */
 #overlayMsg {
     -fx-text-fill: white;
     -fx-font-size: 34px;
@@ -32,21 +33,22 @@
 
 /* ========== Labels ========== */
 .label {
-    -fx-text-fill: #E6EDF3;
+    -fx-text-fill: #E6EDF3; /* Light text color */
 }
 
-/* Title label (uses layout only in FXML) */
+/* Title */
 .label:title, #titleLabel {
-    -fx-text-fill: #FFF;
+    -fx-text-fill: #FFF; /* White for title text */
 }
 
 /* Attempts / Status */
 #attemptsLabel {
-    -fx-text-fill: #E0E0E0; /* Light gray to complement the theme */
+    -fx-text-fill: #E0E0E0; /* Light gray for attempts */
     -fx-font-size: 20px;
 }
+
 #statusLabel {
-    -fx-text-fill: #9053A3; /* Success purple/pink; controller may override on lose */
+    -fx-text-fill: #34D0C3; /* Light teal for success status */
     -fx-font-size: 30px;
     -fx-font-weight: 700;
     -fx-text-alignment: center;
@@ -57,16 +59,16 @@
 .button {
     -fx-background-color:
         linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
-        #3B264F;                     /* base fill */
-    -fx-text-fill: #E6EDF3;
+        #3B264F; /* Base dark purple background for buttons */
+    -fx-text-fill: #E6EDF3; /* Light text color */
     -fx-background-radius: 14;
     -fx-border-radius: 14;
-    -fx-border-color: #9053A3;
+    -fx-border-color: #4A7FB9; /* Soft blue border for buttons */
     -fx-border-width: 1;
     -fx-cursor: hand;
     -fx-padding: 10 18 10 18;
     -fx-background-insets: 0,1;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.2, 0, 3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 10, 0.2, 0, 3); /* Soft shadow effect */
     -fx-scale-x: 1.0;
     -fx-scale-y: 1.0;
     -fx-font-size: 16px;
@@ -75,24 +77,27 @@
     -fx-faint-focus-color: transparent;
 }
 
+/* Hover effect for buttons */
 .button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.45), 18, 0.35, 0, 6);
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 153, 0.45), 18, 0.35, 0, 6); /* Soft green shadow */
     -fx-background-color:
         linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.03)),
-        #4A2B63;
+        #4A2B63; /* Darker shade for hover */
     -fx-scale-x: 1.02;
     -fx-scale-y: 1.02;
 }
 
+/* Pressed effect for buttons */
 .button:pressed {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.3, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.55), 14, 0.3, 0, 4); /* Intense shadow when pressed */
     -fx-background-color:
         linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0.14)),
-        #342240;
+        #342240; /* Darkened shade for pressed effect */
     -fx-scale-x: 0.985;
     -fx-scale-y: 0.985;
 }
 
+/* Disabled button */
 .button:disabled {
     -fx-opacity: 0.6;
     -fx-effect: none;
@@ -106,43 +111,49 @@
 
 /* Optional: make preview feel a bit “special” */
 #previewButton {
-    -fx-border-color: #FF527C;
-}
-#previewButton:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.6), 22, 0.5, 0, 7);
+    -fx-border-color: #34D0C3; /* Teal border */
 }
 
-/* Back icon button (if you add an id, target it; otherwise generic .button rules apply) */
+#previewButton:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 153, 0.6), 22, 0.5, 0, 7); /* Soft glow effect on hover */
+}
+
+/* Back icon button */
 .toolbar-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-effect: none;
     -fx-padding: 4 6 4 6;
 }
+
 .toolbar-button:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.35), 10, 0.2, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.25), 10, 0.3, 0, 0); /* Subtle glow effect */
 }
 
-/* ========== (Optional) Card states if you switch code to style classes ========== */
+/* ========== Card states ========== */
 .card {
     -fx-font-size: 20px;
-    -fx-background-color: #4A2B63;
-    -fx-text-fill: #e6edf3;
+    -fx-background-color: #4A2B63; /* Base dark card background */
+    -fx-text-fill: #e6edf3; /* Light text color */
     -fx-background-radius: 12;
     -fx-border-radius: 12;
 }
+
 .card:hover {
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.45), 16, 0.3, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 255, 153, 0.45), 16, 0.3, 0, 5); /* Green glow on hover */
 }
+
 .card.faceup {
-    -fx-background-color: #FF527C;
+    -fx-background-color: #34D0C3; /* Teal for face-up cards */
     -fx-text-fill: white;
 }
+
 .card.matched {
-    -fx-background-color: #9053A3;
+    -fx-background-color: #9053A3; /* Soft purple for matched cards */
     -fx-text-fill: white;
 }
+
 .card.mismatch {
-    -fx-background-color: #C53051;
+    -fx-background-color: #FF6E9A; /* Light red for mismatched cards */
     -fx-text-fill: white;
 }

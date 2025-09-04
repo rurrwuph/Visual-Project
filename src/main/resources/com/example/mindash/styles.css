@@ -5,96 +5,158 @@
     -fx-background-color: #2D213F; /* Dark purple background */
 }
 
-/* --- Main Typing Checker Window (typing-checker.fxml) Styles --- */
+/* Main Typing Checker Window (typing-checker.fxml) Styles */
 .main-vbox {
     -fx-background-color: #251A36; /* Slightly lighter purple for the main window */
     -fx-padding: 30px;
     -fx-spacing: 10px;
     -fx-alignment: center;
-    -fx-border-color: #4A2B63;
+    -fx-border-color: #4A2B63; /* Sidebar accent */
     -fx-border-width: 1px;
     -fx-border-radius: 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0, 0, 5);
 }
 
 .main-title {
     -fx-font-size: 32px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f5f5f5; /* Light text color for contrast */
+    -fx-text-fill: #FFFFFF; /* White text for high contrast */
     -fx-padding: 0 0 10px 0;
 }
 
-.settings-hbox {
-    -fx-alignment: center;
-    -fx-spacing: 15px;
-    -fx-padding: 10px;
-    -fx-background-color: #3B264F; /* Darker background for settings */
-    -fx-border-radius: 8px;
+/* Sidebar Styling */
+.left-sidebar {
+    -fx-background-color: #3A1F4D; /* Dark purple for the sidebar */
+    -fx-pref-width: 250px;
+    -fx-alignment: TOP_CENTER;
+    -fx-spacing: 20px;
+    -fx-padding: 30px 0 0 0;
+    -fx-background-radius: 15 0 0 15;
 }
 
-.setting-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: #b0b0b0;
-}
-
-.duration-spinner .text-field {
-    -fx-font-size: 16px;
-    -fx-prompt-text-fill: #757575;
-    -fx-background-color: #251A36;
-    -fx-border-color: #4A2B63;
-    -fx-border-radius: 6px;
-    -fx-padding: 8px;
-    -fx-text-fill: #f5f5f5;
-}
-
-.duration-spinner .increment-button,
-.duration-spinner .decrement-button {
-    -fx-background-color: #FF527C; /* Pink/Red accent */
-    -fx-background-radius: 6px;
-}
-
-.duration-spinner .increment-button:hover,
-.duration-spinner .decrement-button:hover {
-    -fx-background-color: #C53051; /* Darker Pink/Red accent */
-}
-
-.time-label-main {
+.sidebar-title {
+    -fx-text-fill: #FFFFFF; /* White text for visibility */
+    -fx-font-family: "Montserrat", "Book Antiqua";
     -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #9053A3; /* A complementary purple color */
+    -fx-padding: 0 0 30px 0;
 }
 
-.countdown-label {
-    -fx-font-size: 28px;
-    -fx-font-weight: bolder;
-    -fx-text-fill: #FF527C; /* A brighter red for contrast */
+/* Sidebar Button Styling */
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFFFFF; /* White text on transparent background for readability */
+    -fx-font-family: "Segoe UI", "Book Antiqua";
+    -fx-font-size: 18px;
+    -fx-font-weight: normal;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 50px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 0 0 0 30px;
+    -fx-cursor: hand;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-transition: background-color 0.2s, text-fill 0.2s, -fx-font-weight 0.2s;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 10);
+}
+
+/* Hover effect for the sidebar button block (background color change) */
+.sidebar-button:hover {
+    -fx-scale-x: 1.1; /* Slightly scale up the button */
+    -fx-scale-y: 1.1; /* Slightly scale up the button */
+    -fx-text-fill: #FFFFFF; /* White text color on hover */
+    -fx-font-weight: bold; /* Make the font bold */
+    -fx-background-color: #3A578D; /* Blue background color on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 1), 10, 0, 0, 0); /* Sharp shadow */
+    -fx-transition: scale 0.3s ease-in-out, -fx-effect 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Pressed button effect */
+.sidebar-button:pressed {
+    -fx-background-color: #2D4576; /* Slightly darker blue when pressed */
+}
+
+/* Right Content Pane Styling */
+.right-content-pane {
+    -fx-background-color: #2D213F;
+    -fx-padding: 20px;
+}
+
+/* Top Right Background Curve */
+.top-right-bg {
+    -fx-background-color: #3A578D; /* Darker blue shade for the top background */
+    -fx-pref-width: 400px;
+    -fx-pref-height: 400px;
+    -fx-background-radius: 200px;
+    -fx-rotate: 45;
+    -fx-translate-x: 100px;
+    -fx-translate-y: -100px;
+}
+
+/* Content Title */
+.content-title {
+    -fx-text-fill: #FFFFFF; /* White text for high contrast */
+    -fx-font-family: "Poppins", "Book Antiqua";
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 20px 0;
+}
+
+/* Content Image Styling */
+.content-image {
+    -fx-background-color: #3F3252; /* Dark purple for the image background */
+    -fx-background-radius: 15;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 15, 0, 0, 5);
+}
+
+/* Content Description */
+.content-description {
+    -fx-font-family: "Segoe UI", "Book Antiqua";
+    -fx-font-size: 16px;
+    -fx-text-alignment: center;
+    -fx-padding: 20px 30px;
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Slight white background for contrast */
+    -fx-background-radius: 10;
+    -fx-max-width: 500px;
+    -fx-blur: 5px;
+}
+
+/* Glow effect on hover for content description */
+.content-description:hover {
+    -fx-background-color: rgba(58, 87, 141, 0.4); /* Light blue hover effect */
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 1), 15, 0, 0, 15); /* Blue shadow with more depth */
+    -fx-scale-x: 1.05; /* Slight scale up on hover */
+    -fx-scale-y: 1.05; /* Slight scale up on hover */
+    -fx-transition: scale 0.3s ease-in-out, -fx-effect 0.3s ease-in-out; /* Smooth scaling and shadow transition */
+}
+
+/* Consistent Rounded Corners */
+.left-sidebar,
+.sidebar-button,
+.content-image,
+.content-description {
+    -fx-background-radius: 20; /* Apply consistent rounded corners */
 }
 
 .prompt-text-flow {
-    -fx-background-color: #251A36; /* Updated to match main background */
-    -fx-padding: 20px;
-    -fx-border-color: #4A2B63;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-font-size: 20px;
-    -fx-line-spacing: 5px;
-    -fx-text-fill: #f5f5f5; /* Light text on dark bg */
-    -fx-pref-height: 180.0;
-    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+    -fx-font-family: "Segoe UI", "Book Antiqua";
+    -fx-font-size: 18px; /* Slightly larger text for readability */
+    -fx-text-fill: #f5f5f5; /* Light text color */
+    -fx-background-color: rgba(58, 87, 141, 0.2); /* Light blue background to match the theme */
+    -fx-background-radius: 15px;
+    -fx-padding: 15px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #4A2B63; /* Darker blue border */
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 10); /* Soft shadow effect for text box */
 }
 
-.current-word-highlight {
-    -fx-fill: #f5f5f5;
-    -fx-background-color: #FFD1E0; /* A light pink, good contrast */
-    -fx-padding: 3px 6px;
-    -fx-background-radius: 4px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 5, 0, 0, 2);
-}
-
+/* Input Area Styling */
 .input-text-area {
     -fx-font-size: 20px;
-    -fx-prompt-text-fill: #a1a1a1;
-    -fx-background-color: #3B264F; /* Made dark purple for contrast */
+    -fx-prompt-text-fill: #f5f5f5; /* Light text for input fields */
+    -fx-background-color: #3B264F; /* Dark purple for contrast */
     -fx-border-color: #251A36;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
@@ -104,57 +166,36 @@
     -fx-control-inner-background: #251A36;
 }
 
+/* Focused Input Area */
 .input-text-area:focused {
-    -fx-border-color: #FF527C; /* Pink/Red accent */
-    -fx-effect: innershadow(gaussian, rgba(255, 82, 124, 0.4), 5, 0, 0, 2);
+    -fx-border-color: #3A578D; /* Blue accent */
+    -fx-effect: innershadow(gaussian, rgba(58, 87, 141, 0.4), 5, 0, 0, 2);
 }
 
-.current-result-label {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FF809B; /* Brighter pink for results */
-    -fx-padding: 10px 0;
-}
-
-.control-buttons-hbox {
-    -fx-alignment: center;
-    -fx-spacing: 15px;
-    -fx-padding: 10px;
-}
-
-.start-stop-button, .custom-text-button, .pause-resume-button {
+/* Button Styling */
+.start-stop-button {
+    -fx-background-color: #3A578D; /* Blue accent */
     -fx-font-size: 16px;
     -fx-padding: 12px 25px;
     -fx-text-fill: white;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
 }
 
-.start-stop-button {
-    -fx-background-color: #FF527C; /* Pink/Red accent */
-}
 .start-stop-button:hover {
-    -fx-background-color: #C53051; /* Darker Pink/Red accent */
+    -fx-background-color: #2D4576; /* Darker blue accent */
 }
 
 .custom-text-button {
-    -fx-background-color: #9053A3; /* Complementary purple */
+    -fx-background-color: #3A578D; /* Blue accent */
 }
 .custom-text-button:hover {
-    -fx-background-color: #724186;
+    -fx-background-color: #2D4576;
 }
 
-.pause-resume-button {
-    -fx-background-color: #FFD1E0; /* Light pink */
-    -fx-text-fill: #251A36; /* Dark text for contrast */
-}
-.pause-resume-button:hover {
-    -fx-background-color: #FFC0D0;
-}
-
-/* --- Results Window (results-view.fxml) Styles --- */
+/* Results Window Styling */
 .results-vbox {
     -fx-background-color: #251A36;
     -fx-padding: 30px;
@@ -163,185 +204,100 @@
     -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
-}
-
-.results-title {
-    -fx-font-size: 30px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #f5f5f5;
-    -fx-padding: 0 0 15px 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0, 0, 5);
 }
 
 .results-section {
     -fx-alignment: center;
     -fx-spacing: 8px;
     -fx-padding: 15px;
-    -fx-background-color: #3B264F;
+    -fx-background-color: #3B264F; /* Dark purple for section background */
     -fx-border-radius: 10px;
     -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
-    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 1);
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 1);
     -fx-max-width: 450px;
 }
 
 .result-metric-label {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #FF809B;
+    -fx-text-fill: #FFFFFF; /* White text for results */
 }
 
 .result-comparison-label {
     -fx-font-size: 16px;
-    -fx-text-fill: #b0b0b0;
+    -fx-text-fill: #b0b0b0; /* Light gray text for comparison */
 }
 
+/* 2. Progress Bars */
 .results-progress-bar .track {
-    -fx-background-color: #4A2B63;
+    -fx-background-color: #4A2B63; /* Sidebar accent color for progress bar track */
     -fx-background-radius: 5px;
     -fx-padding: 2px;
 }
 
 .results-progress-bar .bar {
-    -fx-background-color: linear-gradient(to right, #FF527C, #9053A3);
+    -fx-background-color: linear-gradient(to right, #3A578D, #2D4576); /* Blue gradient */
     -fx-background-radius: 5px;
     -fx-background-insets: 0;
 }
 
-.result-error-label {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #FF527C;
-}
-
-.result-backspace-label {
-    -fx-font-size: 16px;
-    -fx-text-fill: #b0b0b0;
-}
-
+/* 3. WPM Consistency Graph */
 .wpm-chart {
     -fx-padding: 10px;
-    -fx-background-color: #251A36;
+    -fx-background-color: #251A36; /* Light background for chart */
     -fx-border-color: #4A2B63;
     -fx-border-width: 1px;
     -fx-border-radius: 8px;
-    -fx-effect: innershadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-effect: innershadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
 }
 
 .chart-title {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f5f5f5;
+    -fx-text-fill: #f5f5f5; /* White text for chart title */
 }
 
 .axis-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #f5f5f5;
+    -fx-text-fill: #f5f5f5; /* White text for axis labels */
 }
 
 .chart-series-line {
-    -fx-stroke: #FF527C;
+    -fx-stroke: #3A578D; /* Blue color for the line chart */
     -fx-stroke-width: 2.5px;
-    -fx-effect: dropshadow(gaussian, rgba(255, 82, 124, 0.5), 8, 0, 0, 0);
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 0.5), 8, 0, 0, 0);
 }
 
 .chart-line-symbol {
-    -fx-background-color: #FF527C, white;
+    -fx-background-color: #3A578D, white; /* Blue with white for line symbols */
     -fx-background-radius: 5px;
     -fx-padding: 5px;
 }
 
 .close-button {
-    -fx-background-color: #C53051;
+    -fx-background-color: #3A578D; /* Blue background */
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-padding: 12px 25px;
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 2);
 }
+
 .close-button:hover {
-    -fx-background-color: #A02844;
+    -fx-background-color: #2D4576; /* Darker blue on hover */
 }
 
-/* --- Custom Text Input Window (custom-text-view.fxml) Styles --- */
-.custom-text-vbox {
-    -fx-background-color: #251A36;
-    -fx-padding: 30px;
-    -fx-spacing: 20px;
-    -fx-alignment: center;
-    -fx-border-color: #4A2B63;
-    -fx-border-width: 1px;
-    -fx-border-radius: 12px;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 15, 0, 0, 5);
+/* 5. Text Colors */
+.result-metric-label, .result-comparison-label, .results-title {
+    -fx-text-fill: #FFFFFF; /* White text for results and titles */
 }
 
-.custom-text-title {
-    -fx-font-size: 26px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #f5f5f5;
-    -fx-padding: 0 0 10px 0;
-}
-
-.custom-text-input-area {
-    -fx-font-size: 20px;
-    -fx-prompt-text-fill: #a1a1a1;
-    -fx-background-color: #3B264F;
-    -fx-border-color: #251A36;
-    -fx-border-width: 1px;
-    -fx-border-radius: 8px;
-    -fx-padding: 15px;
-    -fx-text-fill: #f5f5f5;
-    -fx-pref-height: 180.0;
-    -fx-control-inner-background: #251A36;
-}
-
-.custom-text-input-area:focused {
-    -fx-border-color: #FF527C;
-    -fx-effect: innershadow(gaussian, rgba(255, 82, 124, 0.4), 5, 0, 0, 2);
-}
-
-.custom-text-buttons-hbox {
-    -fx-alignment: center;
-    -fx-spacing: 15px;
-    -fx-padding: 10px;
-}
-
-.custom-text-apply-button, .custom-text-clear-button, .custom-text-cancel-button {
-    -fx-font-size: 15px;
-    -fx-padding: 10px 20px;
-    -fx-text-fill: white;
-    -fx-border-radius: 8px;
-    -fx-background-radius: 8px;
-    -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);
-}
-
-.custom-text-apply-button {
-    -fx-background-color: #FF527C;
-}
-.custom-text-apply-button:hover {
-    -fx-background-color: #C53051;
-}
-
-.custom-text-clear-button {
-    -fx-background-color: #FFD1E0;
-    -fx-text-fill: #251A36;
-}
-.custom-text-clear-button:hover {
-    -fx-background-color: #FFC0D0;
-}
-
-.custom-text-cancel-button {
-    -fx-background-color: #9053A3;
-}
-.custom-text-cancel-button:hover {
-    -fx-background-color: #724186;
-}
-
-/* --- General / Disabled States --- */
+/* General / Disabled States */
 .text-area:disabled, .button:disabled, .spinner:disabled {
     -fx-opacity: 0.6;
     -fx-background-color: #4A2B63;

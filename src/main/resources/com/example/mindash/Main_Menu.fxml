@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <HBox fx:id="parentBox" alignment="TOP_LEFT" prefHeight="550.0" prefWidth="900.0" styleClass="main-container" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mindash.MainMenu_Controller">
     <stylesheets>
@@ -23,6 +24,9 @@
                 <VBox.margin>
                     <Insets bottom="50.0" />
                 </VBox.margin>
+            <font>
+               <Font name="Book Antiqua Bold" size="20.0" />
+            </font>
             </Label>
             <Button fx:id="typingButton" mnemonicParsing="false" onAction="#launchTyping" styleClass="sidebar-button" text="Typing" />
             <Button fx:id="reactionButton" mnemonicParsing="false" onAction="#launchReaction" styleClass="sidebar-button" text="Reaction" />
@@ -37,7 +41,10 @@
             </Pane>
 
             <VBox alignment="CENTER" spacing="30.0">
-                <Label fx:id="nameLabel" styleClass="content-title" text="Welcome to Mindash" />
+                <Label fx:id="nameLabel" styleClass="content-title" text="Welcome to Mindash">
+               <font>
+                  <Font name="Book Antiqua" size="21.0" />
+               </font></Label>
                 <ImageView fx:id="imageView" fitHeight="200.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" styleClass="content-image" />
                 <Label fx:id="descriptionLabel" alignment="CENTER" prefWidth="450.0" styleClass="content-description" text="Select a game from the menu to see its description and get started!" textFill="WHITE" wrapText="true" />
             </VBox>

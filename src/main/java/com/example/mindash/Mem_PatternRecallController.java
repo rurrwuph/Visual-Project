@@ -45,7 +45,7 @@ public class Mem_PatternRecallController {
     private int round = 0;
     private boolean gameOver = false;
 
-    private final int perCellMs = 120;
+    private final int perCellMs = 80;
     private final int maxHideTimeMs = 4500;
     private final int baseTimeMs = 1000;
 

@@ -68,7 +68,7 @@
         <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
         <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
     </StackPane>
-   <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1D0B29; -fx-background-radius: 20; -fx-border-color: #413E47; -fx-border-radius: 20;" text="⬅">
+   <Button layoutX="14.0" layoutY="25.0" mnemonicParsing="false" onAction="#goBack" prefHeight="40.0" prefWidth="62.0" style="-fx-background-color: #1D0B29; -fx-background-radius: 20; -fx-border-color: #413E47; -fx-border-radius: 20;" stylesheets="@VerbalMem.css" text="⬅">
       <textFill>
          <LinearGradient endX="1.0" endY="1.0">
             <stops>

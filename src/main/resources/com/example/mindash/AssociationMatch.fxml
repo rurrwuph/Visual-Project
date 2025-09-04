@@ -24,7 +24,7 @@
     <Label fx:id="statusLabel" alignment="CENTER" layoutX="118.0" layoutY="354.0" prefHeight="103.0" prefWidth="730.0" visible="false" />
 
     <!-- Inner play area -->
-    <AnchorPane fx:id="rootPane" layoutY="53.0" prefHeight="668.0" prefWidth="972.0">
+    <AnchorPane fx:id="rootPane" layoutY="60.0" prefHeight="682.0" prefWidth="972.0">
         <children>
             <!-- Restart Button -->
             <Button fx:id="restartButton" layoutX="843.0" layoutY="606.0" text="Restart" />
@@ -47,7 +47,7 @@
     </AnchorPane>
 
     <!-- Preview button -->
-    <Button fx:id="previewButton" layoutX="770.0" layoutY="8.0" prefHeight="51.0" prefWidth="157.0" text="Preview 💡">
+    <Button fx:id="previewButton" layoutX="780.0" layoutY="8.0" prefHeight="51.0" prefWidth="157.0" text="Preview 💡">
         <font>
             <Font name="Dubai Medium" size="20.0" />
         </font>

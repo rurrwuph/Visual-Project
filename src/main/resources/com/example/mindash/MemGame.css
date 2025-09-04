@@ -1,10 +1,13 @@
-/* Root + inner to match other screens */
+/* ---- Base Scene Styling ---- */
 .core-root {
-    -fx-background-color: #2D213F; /* Dark purple/indigo */
-    -fx-font-smoothing-type: lcd;
+    -fx-background-color: #2D213F; /* Dark purple background for the whole window */
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0, 0, 0);
 }
+
+/* ---- Inner Pane ---- */
 .inner-pane {
-    -fx-background-color: #251A36; /* Lighter purple for inner panes */
+    -fx-background-color: #3A264F; /* Slightly lighter purple for inner panes */
 }
 
 /* Title */
@@ -12,26 +15,27 @@
     -fx-text-fill: #FFF;
     -fx-font-family: "Book Antiqua";
     -fx-font-weight: bold;
+    -fx-font-size: 28px; /* Slightly larger font size for the title */
 }
 
 /* Narrative box */
 .narrative-label {
-    -fx-background-color: #3B264F;
-    -fx-text-fill: #E6EDF3;
+    -fx-background-color: #3A578D; /* Darker blue for narrative box */
+    -fx-text-fill: #E6EDF3; /* Light text color for readability */
     -fx-font-size: 16px;
     -fx-padding: 14 18 14 18;
     -fx-background-radius: 12;
-    -fx-border-color: #4A2B63;
+    -fx-border-color: #2A3E54; /* Slightly darker blue border */
     -fx-border-radius: 12;
 }
 
-/* Primary/glow buttons – same look as other screens */
+/* Primary Button Styling */
 .button.btn-primary {
-    -fx-background-color: linear-gradient(#4A2B63, #3B264F);
+    -fx-background-color: linear-gradient(#2C3E50, #1B2A3C); /* Darker gradient for primary button */
     -fx-text-fill: #E6EDF3;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: #9053A3;
+    -fx-border-color: #3A4E77; /* Dark blue border */
     -fx-border-width: 1.2;
     -fx-padding: 18 18 18 18;
     -fx-cursor: hand;
@@ -39,33 +43,41 @@
     -fx-font-size: 22px;
     -fx-wrap-text: true;
 
-    /* base (no glow) */
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.0), 0, 0, 0, 0);
+    /* Base (no glow) */
+    -fx-effect: dropshadow(gaussian, rgba(255, 82, 124, 0.0), 0, 0, 0, 0);
 }
+
+/* Hover effect for primary button */
 .button.btn-primary:hover {
-    -fx-background-color: linear-gradient(#FF527C, #C53051);
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.75), 28, 0.45, 0, 0);
+    -fx-background-color: linear-gradient(#2F4B6A, #2A3E50); /* Darker blue gradient on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 0.75), 28, 0.45, 0, 0); /* Blue glow effect */
 }
+
+/* Active/armed effect for primary button */
 .button.btn-primary:armed {
-    -fx-background-color: linear-gradient(#C53051, #A02844);
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.35), 14, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(#2A3E50, #1B2A3C);
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 0.35), 14, 0.35, 0, 0);
 }
+
+/* Focused state for primary button */
 .button.btn-primary:focused {
-    -fx-border-color: #FF527C;
+    -fx-border-color: #3A578D; /* Slightly brighter blue on focus */
     -fx-border-width: 1.6;
 }
 
-/* Ghost back button (consistent) */
+/* Ghost button (Back button) */
 .button.btn-ghost {
     -fx-background-color: transparent;
     -fx-text-fill: #E6EDF3;
     -fx-background-radius: 14;
     -fx-border-radius: 14;
-    -fx-border-color: #4A2B63;
+    -fx-border-color: #2A3E54; /* Darker blue border */
     -fx-border-width: 1.0;
     -fx-cursor: hand;
 }
+
+/* Hover effect for ghost button */
 .button.btn-ghost:hover {
-    -fx-background-color: rgba(255,82,124,0.12);
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.55), 16, 0.35, 0, 0);
+    -fx-background-color: rgba(58, 87, 141, 0.12); /* Soft blue background on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 0.55), 16, 0.35, 0, 0); /* Soft blue glow effect */
 }

@@ -22,13 +22,13 @@
     <!-- Top Controls: Duration + Timer -->
     <HBox alignment="CENTER" spacing="50" styleClass="top-controls-hbox">
         <HBox alignment="CENTER" spacing="10">
-            <Label styleClass="setting-label" text="Duration (seconds):" />
+            <Label styleClass="setting-label" text="Duration (seconds):" textFill="#fffefe" />
             <Spinner fx:id="testDurationSpinner" editable="true" prefWidth="80" styleClass="duration-spinner" />
         </HBox>
 
         <!-- Timer & Countdown -->
         <VBox alignment="CENTER" spacing="5">
-            <Label fx:id="timeLabel" styleClass="time-label-main" text="⏳ Time: 60s" />
+            <Label fx:id="timeLabel" styleClass="time-label-main" text="⏳ Time: 60s" textFill="#fff4f4" />
             <Label fx:id="countdownLabel" styleClass="countdown-label" text="" visible="false" />
         </VBox>
     </HBox>
@@ -42,12 +42,12 @@
     <TextArea fx:id="inputTextArea" prefHeight="140.0" promptText="💬 Start typing here..." styleClass="input-text-area" wrapText="true" />
 
     <!-- Results Display -->
-    <Label fx:id="resultLabel" styleClass="current-result-label" text="WPM: 0 | Accuracy: 0%" />
+    <Label fx:id="resultLabel" styleClass="current-result-label" text="WPM: 0 | Accuracy: 0%" textFill="WHITE" />
 
     <!-- Control Buttons -->
     <HBox alignment="CENTER" spacing="20" styleClass="control-buttons-hbox">
         <Button fx:id="startStopButton" onAction="#startStopButtonAction" styleClass="start-stop-button" text="▶ Start" />
         <Button fx:id="pauseResumeButton" disable="true" onAction="#pauseResumeAction" styleClass="pause-resume-button" text="⏸ Pause" visible="false" />
-        <Button fx:id="openCustomTextWindowButton" onAction="#openCustomTextWindowAction" styleClass="custom-text-button" text="✍ Enter Custom Text" />
+        <Button fx:id="openCustomTextWindowButton" onAction="#openCustomTextWindowAction" styleClass="custom-text-button" text="✍ Enter Custom Text" textFill="WHITE" />
     </HBox>
 </VBox>

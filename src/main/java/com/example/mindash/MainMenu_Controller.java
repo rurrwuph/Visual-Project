@@ -96,7 +96,10 @@ public class MainMenu_Controller {
         }
     }
 
+    //
     // Launching the games
+    // The onAction from FXML will call these methods.
+    //
 
     @FXML
     private void launchTyping(ActionEvent event) {

@@ -5,7 +5,7 @@
 
 /* Section: Board container */
 #boardPane {
-    -fx-background-color: #251A36; /* A slightly lighter purple for the board */
+    -fx-background-color: #3A264F; /* Slightly lighter purple for the board */
 }
 
 /* Title */
@@ -22,23 +22,24 @@
 
 /* Grid area look */
 .pattern-grid {
-    -fx-background-color: #3B264F;
+    -fx-background-color: #1a2236; /* Darker shade for a more dimmed effect */
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: rgba(255,255,255,0.08);
+    -fx-border-color: rgba(255,255,255,0.1); /* Lighter border with reduced opacity */
     -fx-border-width: 1;
     -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0, 0, 5); /* Subtle shadow for dimness */
 }
 
 /* Submit button (pill) */
 .pill-btn {
-    -fx-background-color: linear-gradient(to bottom, #4A2B63, #3B264F);
+    -fx-background-color: linear-gradient(to bottom, #2A3E50, #2F4B6A); /* Dark blue gradient */
     -fx-text-fill: #E6EDF3;
     -fx-font-size: 18px;
     -fx-font-family: "Dubai Medium";
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-border-color: #9053A3;
+    -fx-border-color: #4A7FB9; /* Soft blue border */
     -fx-border-width: 1;
     -fx-cursor: hand;
     -fx-padding: 10 18;
@@ -46,39 +47,51 @@
 }
 
 .pill-btn:hover {
-    /* subtle shine/glow on hover */
-    -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.85), 16, 0.35, 0, 0);
-    -fx-background-color: linear-gradient(to bottom, #FF527C, #C53051);
+    /* Subtle blue glow on hover */
+    -fx-effect: dropshadow(gaussian, rgba(58, 87, 141, 0.85), 16, 0.35, 0, 0);
+    -fx-background-color: linear-gradient(to bottom, #2F4B6A, #2A3E50); /* Darker blue gradient on hover */
 }
 
 .pill-btn:pressed {
     -fx-translate-y: 1;
-    -fx-background-color: linear-gradient(to bottom, #C53051, #A02844);
+    -fx-background-color: linear-gradient(to bottom, #2A3E50, #1B2A3C); /* Even darker blue for pressed state */
 }
 
 /* Back icon button */
 .icon-btn {
-    -fx-background-color: transparent;
-    -fx-background-radius: 999;
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    -fx-background-radius: 40%; /* Round the button to make it circular */
+    -fx-border-radius: 40%;
+    -fx-border-color: rgba(255, 255, 255, 0.3); /* Soft border */
+    -fx-border-width: 1px; /* Thin border for the glass effect */
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 5, 0, 0, 5); /* Soft glowing effect */
+    -fx-padding: 10px;
+    -fx-background-insets: 0; /* Remove extra inset from background */
+    -fx-blur: 5px; /* Soft blur effect for glass-like feeling */
 }
 
 .icon-btn:hover {
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.25), 10, 0.3, 0, 0);
 }
 
+.icon-btn:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.25); /* Darker background when pressed */
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 5, 0, 0, 5); /* Light glow effect */
+}
+
 /* Dim the scene and center content */
 #gameOverlay {
-    -fx-background-color: rgba(0,0,0,0.55);
+    -fx-background-color: rgba(0,0,0,0.55); /* Dark overlay for the game */
 }
 
 /* Nicer card-like label */
 #gameOverLabel {
-    -fx-text-fill: linear-gradient(#FFD1E0, #FFFFFF);
+    -fx-text-fill: linear-gradient(#FFD1E0, #FFFFFF); /* Gradient text for game over label */
     -fx-font-size: 44px;
     -fx-font-weight: 900;
     -fx-padding: 16 28;
-    -fx-background-color: rgba(69, 42, 95, 0.90);
+    -fx-background-color: rgba(69, 42, 95, 0.90); /* Darker background for game over */
     -fx-background-radius: 18;
     -fx-effect: dropshadow(gaussian, rgba(255,82,124,0.45), 28, 0.35, 0, 0);
     -fx-alignment: center;
