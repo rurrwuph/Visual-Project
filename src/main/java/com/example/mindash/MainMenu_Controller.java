@@ -33,7 +33,7 @@ public class MainMenu_Controller {
     private final Map<String, GameInfo> gameData = new HashMap<>();
 
     public void initialize() {
-        // Initialize game data
+        // initialize the game data
         gameData.put("typing", new GameInfo("Typing Challenge",
                 "Test and improve your typing speed and accuracy by typing random words and sentences within a set time. Challenge yourself to type faster while reducing errors.",
                 "keyboard_switch.png"));
@@ -46,18 +46,18 @@ public class MainMenu_Controller {
                 "A great way to improve your reaction time and coordination. Respond to on-screen cues at your own pace, helping to rebuild your reflexes and focus during rehabilitation.",
                 "react_reaction_time_image.png"));
 
-        // Setup button hover effects, without overwriting onAction
+        // setup button hover effects, without overwriting onAction
         setupButtonHover(typingButton, "typing");
         setupButtonHover(memoryButton, "memory");
         setupButtonHover(reactionButton, "reaction");
 
-        // Set an initial active button and display its content
+        // set an initial active button and display its content
         setActiveButton(typingButton);
     }
 
     private void setupButtonHover(Button button, String gameKey) {
         button.setOnMouseEntered(e -> showGameContent(gameKey));
-        // The mouse exited event is not necessary for this UI design
+        // the mouse exited event is not necessary for this UI design
     }
 
     private void setActiveButton(Button button) {
@@ -66,7 +66,7 @@ public class MainMenu_Controller {
         }
         button.getStyleClass().add("active");
         currentActiveButton = button;
-        // Also show content for the newly active button
+        // also show content for the newly active button
         String gameKey = getGameKeyFromButton(button);
         if (gameKey != null) {
             showGameContent(gameKey);
@@ -96,10 +96,8 @@ public class MainMenu_Controller {
         }
     }
 
-    //
-    // Launching the games
-    // The onAction from FXML will call these methods.
-    //
+    // launching the games
+    // the onAction from FXML will call these methods.
 
     @FXML
     private void launchTyping(ActionEvent event) {
@@ -129,20 +127,20 @@ public class MainMenu_Controller {
         switchScene("react_menu.fxml", event);
     }
 
-    // Helper method to switch scenes
+    // helper method to switch scenes
     private void switchScene(String fxmlFile, ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = fxmlLoader.load();
 
-            // Get the current Stage from the event source
+            // get the current Stage from the event source
             Stage stage = new Stage();
 
-            // Create a new Scene with the loaded FXML root
+            // create a new Scene with the loaded FXML root
             Scene scene = new Scene(root);
             //scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("MainMenu.css")).toExternalForm());
 
-            // Set the new scene on the current stage
+            // set the new scene on the current stage
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
