@@ -36,6 +36,9 @@ public class react_Test2Controller implements Initializable {
     private List<Ball> balls = new ArrayList<>();
     private Circle[] targets;
 
+    // NEW: List to store individual reaction times for each red ball
+    private List<Long> reactionTimes = new ArrayList<>();
+
     @FXML
     public void initialize(java.net.URL location, java.util.ResourceBundle resources) {
         targets = new Circle[]{target1, target2, target3, target4, target5};
@@ -50,6 +53,8 @@ public class react_Test2Controller implements Initializable {
         statusLabel.setText("Click red balls as they fall! Target: 0/" + TARGET_BALLS);
         gamePane.getChildren().clear();
         balls.clear();
+        // NEW: clear previous reaction times
+        reactionTimes.clear();
 
         gameLoop = new AnimationTimer() {
             private long lastUpdate = 0;
@@ -63,12 +68,12 @@ public class react_Test2Controller implements Initializable {
 
                 double elapsedSeconds = (now - lastUpdate) / 1_000_000_000.0;
 
-                // Create new balls occasionally
+                // create new balls occasionally
                 if (random.nextInt(100) < 5) {
                     createBall();
                 }
 
-                // Update existing balls
+                // Update the existing balls
                 List<Ball> toRemove = new ArrayList<>();
                 for (Ball ball : balls) {
                     ball.y += ball.speed * elapsedSeconds * 60;
@@ -79,7 +84,7 @@ public class react_Test2Controller implements Initializable {
                     }
                 }
 
-                // Remove balls that are out of bounds
+                // Remove the balls that are out of bounds
                 for (Ball ball : toRemove) {
                     gamePane.getChildren().remove(ball.circle);
                     balls.remove(ball);
@@ -99,16 +104,18 @@ public class react_Test2Controller implements Initializable {
     private void createBall() {
         double x = random.nextInt((int) gamePane.getWidth() - 30) + 15;
         Ball ball = new Ball();
-        ball.circle = new Circle(18); // CHANGED: Increased radius from 15 to 18 for better click detection
+        ball.circle = new Circle(18);
         ball.circle.setCenterX(x);
         ball.circle.setCenterY(0);
         ball.y = 0;
+
+        // NEW: Record creation time for reaction time calculation
+        ball.creationTime = System.currentTimeMillis();
 
         // Random color (red balls are targets)
         if (random.nextInt(2) == 0) {
             ball.circle.setFill(Color.RED);
             ball.circle.setUserData("target");
-            // CHANGED: Added visual effect to make target balls more distinct
             ball.circle.setStroke(Color.WHITE);
             ball.circle.setStrokeWidth(2);
         } else {
@@ -117,7 +124,6 @@ public class react_Test2Controller implements Initializable {
             ball.circle.setUserData("normal");
         }
 
-        // CHANGED: Improved click detection by using mouse pressed instead of clicked
         ball.circle.setOnMousePressed(this::handleBallClick);
         ball.speed = 1 + random.nextDouble() * 2;
 
@@ -128,11 +134,21 @@ public class react_Test2Controller implements Initializable {
     private void handleBallClick(MouseEvent event) {
         Circle clickedCircle = (Circle) event.getSource();
 
-        // CHANGED: Added null check and additional validation
         if (clickedCircle != null && "target".equals(clickedCircle.getUserData())) {
+            // NEW: Calculate reaction time for this specific ball
+            long clickTime = System.currentTimeMillis();
+
+            // Find the ball that was clicked
+            for (Ball ball : balls) {
+                if (ball.circle == clickedCircle) {
+                    long reactionTime = clickTime - ball.creationTime;
+                    reactionTimes.add(reactionTime);
+                    break;
+                }
+            }
+
             gamePane.getChildren().remove(clickedCircle);
 
-            // CHANGED: More reliable removal using iterator
             balls.removeIf(ball -> {
                 if (ball.circle == clickedCircle) {
                     return true;
@@ -144,7 +160,6 @@ public class react_Test2Controller implements Initializable {
             updateTargetIndicators();
             statusLabel.setText("Click red balls as they fall! Target: " + ballsClicked + "/" + TARGET_BALLS);
 
-            // CHANGED: Added visual feedback for successful click
             event.consume();
         }
     }
@@ -160,13 +175,18 @@ public class react_Test2Controller implements Initializable {
     }
 
     private void endGame() {
-        long reactionTime = System.currentTimeMillis() - startTime;
+        // NEW: Calculate average reaction time
+        long totalReactionTime = 0;
+        for (long time : reactionTimes) {
+            totalReactionTime += time;
+        }
+        long averageReactionTime = totalReactionTime / TARGET_BALLS;
 
         // Compare with best time
         boolean newBest = false;
-        if (reactionTime < bestTime) {
+        if (averageReactionTime < bestTime) {
             newBest = true;
-            saveBestTime(reactionTime);
+            saveBestTime(averageReactionTime);
         }
 
         try {
@@ -174,7 +194,8 @@ public class react_Test2Controller implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("react_result2.fxml"));
             Parent root = loader.load();
             react_Result2Controller controller = loader.getController();
-            controller.setResults(reactionTime, bestTime);
+            // NEW: Pass average reaction time instead of total time
+            controller.setResults(averageReactionTime, bestTime);
 
             // Switch to the result screen
             Stage stage = (Stage) gamePane.getScene().getWindow();
@@ -186,7 +207,6 @@ public class react_Test2Controller implements Initializable {
 
     private void loadBestTime() {
         try {
-            // CHANGED: Fixed filename consistency issue
             if (Files.exists(Paths.get("react_bestTime2.txt"))) {
                 String content = new String(Files.readAllBytes(Paths.get("react_bestTime2.txt")));
                 bestTime = Long.parseLong(content.trim());
@@ -212,5 +232,7 @@ public class react_Test2Controller implements Initializable {
         Circle circle;
         double y;
         double speed;
+        // NEW: Track when each ball was created for reaction time calculation
+        long creationTime;
     }
 }
